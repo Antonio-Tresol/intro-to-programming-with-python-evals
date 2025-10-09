@@ -4,7 +4,7 @@ Interactive Python quiz platform for learning programming concepts through hands
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://antonio-tresol.github.io/intro-to-programming-with-python-evals/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Quizzes](https://img.shields.io/badge/Quizzes-2-orange.svg)](#available-quizzes)
+[![Quizzes](https://img.shields.io/badge/Quizzes-4-orange.svg)](#available-quizzes)
 
 ## 🎯 Overview
 
@@ -20,26 +20,9 @@ A collection of interactive quizzes designed to test and improve Python programm
 
 ## 🎓 Available Quizzes
 
-### 📊 De Zero a Estructuras de Datos
-**Level**: Básico a Intermedio | **Questions**: 18 | **Time**: ~20 min
-
-Covers Python fundamentals from basic operators to complex data structures.
-
-**Topics**: Variables, Lists, Dictionaries, Sets, Recursion, Type Hints
-
-[**Start Quiz →**](quizzes/data-structures/)
+Browse all available quizzes in the [quizzes/](https://antonio-tresol.github.io/intro-to-programming-with-python-evals/) directory or visit the [live site](https://antonio-tresol.github.io/intro-to-programming-with-python-evals/) to see the complete catalog.
 
 ---
-
-### 🔬 Física y Química
-**Level**: Intermedio | **Questions**: 10 | **Time**: ~15 min
-
-Applied Python in physics simulations and chemistry calculations.
-
-**Topics**: Scientific Computing, Simulations, Data Analysis
-
-[**Start Quiz →**](quizzes/physics-chemistry/)
-
 ## 🚀 Quick Start
 
 ### For Learners
@@ -76,8 +59,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed contribution guidelines.
 │   └── js/
 │       └── quiz-engine.js  # Core quiz logic (9 KB)
 ├── quizzes/
-│   ├── data-structures/    # Quiz 1
-│   ├── physics-chemistry/  # Quiz 2
+│   ├── quiz_name/ # for each quiz
 │   └── template/           # Template for new quizzes
 └── validation/
     └── *.py               # Python validation scripts
@@ -109,15 +91,17 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed contribution guidelines.
 
 ## 🧪 Validation
 
-All quiz answers are validated with Python scripts before publication:
+All quiz answers are validated with Python scripts before publication. Each quiz has a corresponding validation script in the `validation/` folder.
 
 ```bash
-# Validate physics & chemistry quiz
-python validation/validate_physics_chemistry.py
+# Run validation for a specific quiz
+python validation/validate_<quiz_name>.py
 
-# Create validation for your quiz
-python validation/validate_my_quiz.py
+# Example: Validate physics & chemistry quiz
+python validation/validate_physics_chemistry.py
 ```
+
+See the [validation/](validation/) folder for all available validation scripts.
 
 ## 🎨 Creating a Quiz
 
@@ -172,25 +156,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Marked.js** - Markdown parsing
 - **Fira Code** - Beautiful monospace font
 
-## 📊 Stats
-
-- **Total Quizzes**: 2
-- **Total Questions**: 28
-- **Lines of Code**: ~1,500
-- **File Size (total)**: ~50 KB
-- **Dependencies**: 0 (all CDN)
-
-## 🗺️ Roadmap
-
-- [ ] Add more quizzes (algorithms, OOP, async programming)
-- [ ] Leaderboard system
-- [ ] Progress tracking (localStorage)
-- [ ] Timed quiz mode
-- [ ] Difficulty levels
-- [ ] Quiz categories/tags
-- [ ] Export/share results
-
-## 📞 Contact
+##  Contact
 
 - **Repository**: [github.com/Antonio-Tresol/intro-to-programming-with-python-evals](https://github.com/Antonio-Tresol/intro-to-programming-with-python-evals)
 - **Issues**: [Open an issue](https://github.com/Antonio-Tresol/intro-to-programming-with-python-evals/issues)
