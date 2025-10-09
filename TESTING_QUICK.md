@@ -2,25 +2,14 @@
 
 ## 🚀 Quick Start (3 Steps)
 
-### 1. Run Automated Tests
-```bash
-./test-local.sh
-```
-
-Expected output:
-```
-✅ All checks passed!
-🚀 Ready to start local server
-```
-
-### 2. Start Local Server
+### 1. Start Local Server
 ```bash
 python3 -m http.server 8000
 ```
 
 Server will start at: **http://localhost:8000**
 
-### 3. Open in Browser
+### 2. Open in Browser
 ```bash
 # In VS Code dev container
 $BROWSER http://localhost:8000

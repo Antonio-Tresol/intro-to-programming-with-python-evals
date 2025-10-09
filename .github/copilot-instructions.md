@@ -50,9 +50,10 @@ The engine (`assets/js/quiz-engine.js`) expects:
 ## Developer Workflows
 
 ### Adding a New Quiz
-```bash
 # 1. Copy template (preserves structure)
+```bash
 cp -r quizzes/template quizzes/your-topic
+```
 
 # 2. Edit quizzes/your-topic/data.js
 #    - Rename variable: templateQuizData -> yourTopicQuizData
@@ -66,6 +67,8 @@ cp -r quizzes/template quizzes/your-topic
 #    Copy existing quiz card, update title/description/link
 
 # 5. Validate (CRITICAL before committing)
+
+```bash
 python validation/validate_your_quiz.py  # Create if needed
 ```
 
