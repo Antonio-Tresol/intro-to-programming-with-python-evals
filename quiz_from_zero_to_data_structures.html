@@ -415,6 +415,15 @@ def validar_y_promediar_lecturas(
         return 0.0
     return sum(valores_validos) / len(valores_validos)
 
+# Datos de entrada
+datos_sensores = [
+    {'sensor_id': 'temp-01', 'value': 22.5, 'status': 'ok'},
+    {'sensor_id': 'temp-01', 'value': -5.0, 'status': 'ok'}, # Valor por debajo del umbral
+    {'sensor_id': 'pres-01', 'value': 1012.5, 'status': 'ok'}, # ID incorrecto
+    {'sensor_id': 'temp-01', 'value': 23.1, 'status': 'error'}, # Status incorrecto
+    {'sensor_id': 'temp-01', 'value': 23.1, 'status': 'ok'}
+]
+
 # Llamada: validar_y_promediar_lecturas(datos_sensores, 'temp-01', 0.0)`,
                 options: ["13.53", "22.8", "45.6", "263.525"],
                 correct: "22.8",
@@ -449,6 +458,15 @@ def consolidar_datos_sensores(lecturas: List[Dict[str, Any]]) -> Dict[str, Dict[
         resumen[sensor_id]['total'] += valor
         resumen[sensor_id]['maximo'] = max(resumen[sensor_id]['maximo'], valor)
     return resumen
+
+# Datos de entrada
+lecturas_lote = [
+    {'id': 'hum-01', 'value': 65.5},
+    {'id': 'temp-02', 'value': 15.2},
+    {'id': 'hum-01', 'value': 66.0},
+    {'id': 'temp-02', 'value': 'N/A'}, # Valor no numérico
+    {'id': 'temp-02', 'value': 16.1},
+]
 
 # Llamada: consolidar_datos_sensores(lecturas_lote)`,
                 options: [
