@@ -45,6 +45,14 @@ A quick reference for finding the right documentation based on your needs.
 - Running validations
 - Creating new validators
 
+### Test Locally Before Deployment
+→ **[TESTING.md](TESTING.md)** or **[TESTING_QUICK.md](TESTING_QUICK.md)**
+- Local server setup
+- Automated testing script
+- Manual testing checklist
+- Browser compatibility testing
+- Pre-deployment checklist
+
 ### Create a Specific Quiz
 → **[quizzes/template/README.md](quizzes/template/README.md)**
 - Template usage
