@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +9,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <!-- Fira Code Font & Highlight.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <!-- Marked.js for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- Custom styles -->
     <link rel="stylesheet" href="../../assets/css/quiz-styles.css">
 </head>
+
 <body class="google-bg min-h-screen flex items-center justify-center p-4">
 
     <div id="quiz-container" class="w-full max-w-4xl mx-auto bg-white rounded-2xl google-shadow overflow-hidden">
-        
+
         <div id="start-screen" class="p-8 md:p-12 text-center">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Quiz: Funciones Auxiliares en Python</h1>
-            <p class="text-gray-600 text-lg mb-8">¡Domina el patrón de función auxiliar para código modular y reutilizable!</p>
-            <button id="start-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full text-xl transition-transform transform hover:scale-105">
+            <p class="text-gray-600 text-lg mb-8">¡Domina el patrón de función auxiliar para código modular y
+                reutilizable!</p>
+            <button id="start-btn"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full text-xl transition-transform transform hover:scale-105">
                 ¡Empezar!
             </button>
         </div>
@@ -34,44 +39,47 @@
             <div class="w-full bg-gray-200 rounded-full h-2.5 mb-6">
                 <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
             </div>
-            
+
             <div class="question-content">
-                <h2 id="question-title" class="text-2xl font-bold text-gray-800 mb-4 text-center"></h2>
+                <h2 id="question-title" class="text-2xl"></h2>
                 <div id="code-snippet" class="mb-6 code-block"></div>
                 <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- Las opciones se generarán aquí -->
                 </div>
-                <div id="explanation-container" class="hidden mt-6 p-4 rounded-lg bg-blue-50 border-l-4 border-blue-500 text-gray-700">
+                <div id="explanation-container"
+                    class="hidden mt-6 p-4 rounded-lg bg-blue-50 border-l-4 border-blue-500 text-gray-700">
                     <!-- La explicación aparecerá aquí -->
                 </div>
                 <div class="mt-4 text-center">
-                    <button id="next-btn" class="hidden bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded-full text-lg transition-transform transform hover:scale-105">
+                    <button id="next-btn"
+                        class="hidden bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded-full text-lg transition-transform transform hover:scale-105">
                         Siguiente
                     </button>
                 </div>
             </div>
         </div>
-        
+
         <div id="result-screen" class="hidden p-8 md:p-12 text-center">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-2">¡Juego Terminado!</h1>
             <p class="text-gray-600 text-xl mb-6">Tu puntaje final es:</p>
             <p id="final-score" class="text-7xl font-bold text-blue-600 mb-8"></p>
-            <button id="restart-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full text-xl transition-transform transform hover:scale-105">
+            <button id="restart-btn"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full text-xl transition-transform transform hover:scale-105">
                 Jugar de Nuevo
             </button>
         </div>
     </div>
-    
+
     <!-- Highlight.js Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
-    
+
     <!-- Quiz Data -->
     <script src="./data.js"></script>
-    
+
     <!-- Quiz Engine -->
     <script src="../../assets/js/quiz-engine.js"></script>
-    
+
     <!-- Initialize Quiz -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -79,4 +87,5 @@
         });
     </script>
 </body>
+
 </html>
