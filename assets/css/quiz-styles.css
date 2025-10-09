@@ -1,0 +1,216 @@
+/**
+ * @file Shared styles for Python Quiz applications
+ * @description Common styling for all quiz interfaces
+ */
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.google-bg {
+    background-color: #f8f9fa;
+}
+
+.google-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
+}
+
+.option-card {
+    background-color: #282c34; /* Atom One Dark background for all cards */
+    border-left-width: 6px; /* Accent border */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s;
+    display: flex;
+    align-items: center; /* Vertically center content */
+    min-height: 80px;
+    height: 100%; /* Ensures cards in the same row have equal height */
+    padding: 0; /* Remove padding as it's handled by the inner pre element */
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.option-card:hover:not(:disabled) {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for the code block with Fira Code and highlight.js */
+.code-block {
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.code-block code {
+    border-radius: 8px !important;
+}
+
+/* Explanation container with scroll for long content */
+#explanation-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Markdown generated content styles */
+#explanation-container ul, #explanation-container ol {
+    list-style-position: inside;
+    padding-left: 1rem;
+    text-align: left;
+}
+
+#explanation-container ul { 
+    list-style-type: disc; 
+}
+
+#explanation-container ol { 
+    list-style-type: decimal; 
+}
+
+#explanation-container a { 
+    color: #1a73e8; 
+    text-decoration: underline; 
+}
+
+/* Syntax highlighting for inline code in explanations */
+#explanation-container code {
+    background-color: rgba(0,0,0,0.08);
+    padding: 3px 6px;
+    border-radius: 6px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9em;
+}
+
+/* Unified styling for all options, now treated as code blocks */
+.option-card pre {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    width: 100%;
+    background-color: transparent !important;
+    color: #abb2bf; /* Default text color for Atom One Dark */
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.option-card pre code {
+    background-color: transparent !important;
+    padding: 0;
+    font-size: inherit;
+}
+
+/* Accent colors for borders */
+.border-accent-red { 
+    border-color: #DB4437; 
+}
+
+.border-accent-blue { 
+    border-color: #4285F4; 
+}
+
+.border-accent-yellow { 
+    border-color: #F4B400; 
+}
+
+.border-accent-green { 
+    border-color: #0F9D58; 
+}
+
+/* Animations */
+.slide-in { 
+    animation: slide-in 0.5s forwards; 
+}
+
+.slide-out { 
+    animation: slide-out 0.5s forwards; 
+}
+
+@keyframes slide-in {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes slide-out {
+    from { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+    to { 
+        opacity: 0; 
+        transform: translateY(-20px); 
+    }
+}
+
+/* Feedback styling now applied to the whole card */
+.feedback-correct { 
+    animation: feedback-pop 0.5s ease-out; 
+    background-color: #0F9D58 !important; 
+    border-color: white !important; 
+}
+
+.feedback-incorrect { 
+    animation: feedback-shake 0.5s ease-in-out; 
+    background-color: #DB4437 !important; 
+    border-color: white !important; 
+}
+
+.feedback-highlight-correct { 
+    border-color: #0F9D58 !important; 
+}
+
+/* Ensure text is readable on feedback */
+.feedback-correct pre, 
+.feedback-correct pre code,
+.feedback-incorrect pre, 
+.feedback-incorrect pre code {
+    color: white !important;
+}
+
+.feedback-correct .hljs-string, 
+.feedback-incorrect .hljs-string { 
+    color: #e2e2e2 !important; 
+}
+
+.feedback-correct .hljs-number, 
+.feedback-incorrect .hljs-number { 
+    color: #d6d6d6 !important; 
+}
+
+.feedback-correct .hljs-keyword, 
+.feedback-incorrect .hljs-keyword { 
+    color: #f2f2f2 !important; 
+}
+
+@keyframes feedback-pop {
+    0% { 
+        transform: scale(0.8); 
+        opacity: 0; 
+    }
+    50% { 
+        transform: scale(1.1); 
+    }
+    100% { 
+        transform: scale(1); 
+        opacity: 1; 
+    }
+}
+
+@keyframes feedback-shake {
+    0%, 100% { 
+        transform: translateX(0); 
+    }
+    20%, 60% { 
+        transform: translateX(-10px); 
+    }
+    40%, 80% { 
+        transform: translateX(10px); 
+    }
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Quizzes - Inicio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .quiz-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .quiz-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-4 py-12">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-800 mb-4">
+                🐍 Python Quiz Hub
+            </h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Mejora tus habilidades de programación en Python con nuestros quizzes interactivos
+            </p>
+        </div>
+
+        <!-- Quiz Cards -->
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            
+            <!-- Quiz 1: Data Structures -->
+            <div class="quiz-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6">
+                    <h2 class="text-3xl font-bold text-white mb-2">
+                        📊 De Zero a Estructuras de Datos
+                    </h2>
+                    <p class="text-blue-100">
+                        Nivel: Básico a Intermedio
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="mb-6">
+                        <p class="text-gray-700 mb-4">
+                            Cubre conceptos fundamentales de Python desde operadores hasta estructuras de datos complejas.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Variables</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Listas</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Diccionarios</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Recursión</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Conjuntos</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="text-sm text-gray-600">
+                            <span class="font-semibold">18 preguntas</span> • 
+                            <span class="font-semibold">180 puntos</span>
+                        </div>
+                        <div class="text-sm text-gray-600">
+                            ⏱️ ~20 min
+                        </div>
+                    </div>
+                    <a href="quizzes/data-structures/" 
+                       class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-center transition-colors">
+                        Comenzar Quiz →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quiz 2: Physics & Chemistry -->
+            <div class="quiz-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-purple-500 to-pink-500 p-6">
+                    <h2 class="text-3xl font-bold text-white mb-2">
+                        🔬 Física y Química
+                    </h2>
+                    <p class="text-purple-100">
+                        Nivel: Intermedio
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="mb-6">
+                        <p class="text-gray-700 mb-4">
+                            Aplicaciones de Python en simulaciones físicas y cálculos químicos.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Simulación</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Física</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Química</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Circuitos</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="text-sm text-gray-600">
+                            <span class="font-semibold">4 preguntas</span> • 
+                            <span class="font-semibold">40 puntos</span>
+                        </div>
+                        <div class="text-sm text-gray-600">
+                            ⏱️ ~10 min
+                        </div>
+                    </div>
+                    <a href="quizzes/physics-chemistry/" 
+                       class="block w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg text-center transition-colors">
+                        Comenzar Quiz →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Features Section -->
+        <div class="mt-16 max-w-4xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                    ✨ Características de Nuestros Quizzes
+                </h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">🎲</div>
+                        <h4 class="font-bold text-gray-800 mb-2">Orden Aleatorio</h4>
+                        <p class="text-sm text-gray-600">
+                            Preguntas y opciones mezcladas en cada intento
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">💡</div>
+                        <h4 class="font-bold text-gray-800 mb-2">Explicaciones Detalladas</h4>
+                        <p class="text-sm text-gray-600">
+                            Aprende de tus errores con explicaciones paso a paso
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">📱</div>
+                        <h4 class="font-bold text-gray-800 mb-2">Diseño Responsivo</h4>
+                        <p class="text-sm text-gray-600">
+                            Funciona perfectamente en móviles y computadoras
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-16 text-center text-gray-600">
+            <p class="mb-2">
+                Hecho con ❤️ para estudiantes de Python
+            </p>
+            <p class="text-sm">
+                <a href="https://github.com" class="text-blue-600 hover:underline">Ver en GitHub</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
