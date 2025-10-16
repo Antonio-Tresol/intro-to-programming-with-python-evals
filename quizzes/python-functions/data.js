@@ -51,7 +51,7 @@ def nombre_funcion():
     },
     {
         question: "**¿Cómo se llama (ejecuta) una función en Python?**\n\nDespués de definir una función, necesitas llamarla para que se ejecute.",
-        code: `def saludar():
+        code: `def saludar() -> None:
     print("¡Hola, mundo!")
 
 # ¿Cómo ejecutar la función?`,
@@ -68,7 +68,7 @@ Para ejecutar una función, escribes su nombre seguido de paréntesis.
 
 **Ejemplo:**
 \`\`\`python
-def saludar():
+def saludar() -> None:
     print("¡Hola, mundo!")
 
 saludar()  # Esto ejecuta la función
@@ -78,6 +78,7 @@ saludar()  # Esto ejecuta la función
 **Importante:**
 - Sin los paréntesis \`()\`, solo obtienes una referencia a la función
 - Con paréntesis \`()\`, ejecutas la función
+- \`-> None\` indica que la función no retorna ningún valor
 
 **Ejemplo de la diferencia:**
 \`\`\`python
@@ -87,7 +88,7 @@ print(saludar())  # ¡Hola, mundo!
     },
     {
         question: "**¿Qué imprime este código?**\n\nVeamos cómo funciona una función simple sin parámetros.",
-        code: `def mensaje():
+        code: `def mensaje() -> None:
     print("Python es genial")
 
 mensaje()`,
@@ -123,7 +124,7 @@ mensaje()                # 3. Se llama la función
     },
     {
         question: "**¿Cuántas veces se imprime 'Hola' en este código?**\n\nLas funciones pueden llamarse múltiples veces.",
-        code: `def imprimir_hola():
+        code: `def imprimir_hola() -> None:
     print("Hola")
 
 imprimir_hola()
@@ -162,7 +163,7 @@ Hola
     // LEVEL 2: PARAMETERS AND ARGUMENTS (Questions 5-8)
     {
         question: "**¿Qué imprime este código?**\n\nLas funciones pueden aceptar parámetros para trabajar con diferentes datos.",
-        code: `def saludar(nombre):
+        code: `def saludar(nombre: str) -> None:
     print("Hola, " + nombre)
 
 saludar("Ana")`,
@@ -204,7 +205,7 @@ saludar("María")   # Salida: Hola, María
     },
     {
         question: "**¿Qué sucede con este código?**\n\nLos parámetros son obligatorios a menos que se especifique lo contrario.",
-        code: `def sumar(a, b):
+        code: `def sumar(a: int, b: int) -> None:
     print(a + b)
 
 sumar(5)`,
@@ -245,7 +246,7 @@ sumar(5)  # Salida: 5
     },
     {
         question: "**¿Qué imprime este código?**\n\nMultiples parámetros te permiten trabajar con varios valores.",
-        code: `def calcular(x, y, z):
+        code: `def calcular(x: int, y: int, z: int) -> None:
     resultado = x + y * z
     print(resultado)
 
@@ -285,7 +286,7 @@ calcular(2, 3, 4)
     },
     {
         question: "**¿Qué imprime este código?**\n\nLos parámetros pueden tener valores por defecto.",
-        code: `def saludar(nombre="Invitado"):
+        code: `def saludar(nombre: str = "Invitado") -> None:
     print("Bienvenido, " + nombre)
 
 saludar()`,
@@ -328,7 +329,7 @@ def funcion(parametro_obligatorio, parametro_opcional="valor_por_defecto"):
     // LEVEL 3: RETURN VALUES (Questions 9-12)
     {
         question: "**¿Qué imprime este código?**\n\nLa palabra clave `return` devuelve un valor de la función.",
-        code: `def sumar(a, b):
+        code: `def sumar(a: int, b: int) -> int:
     return a + b
 
 resultado = sumar(3, 5)
@@ -373,7 +374,7 @@ y = sumar2(3, 5)  # Imprime 8, pero y = None
     },
     {
         question: "**¿Qué valor tiene `x` después de ejecutar este código?**\n\nSi una función no tiene `return`, devuelve un valor especial.",
-        code: `def imprimir_mensaje():
+        code: `def imprimir_mensaje() -> None:
     print("Hola")
 
 x = imprimir_mensaje()`,
@@ -422,7 +423,7 @@ b = funcion2()
     },
     {
         question: "**¿Qué imprime este código?**\n\nLas funciones pueden retornar el resultado de cálculos complejos.",
-        code: `def multiplicar_y_sumar(a, b, c):
+        code: `def multiplicar_y_sumar(a: int, b: int, c: int) -> int:
     resultado = (a * b) + c
     return resultado
 
@@ -466,7 +467,7 @@ print(valor)  # Salida: 30
     },
     {
         question: "**¿Qué imprime este código?**\n\n`return` puede retornar el resultado directo de una expresión.",
-        code: `def es_mayor(a, b):
+        code: `def es_mayor(a: int, b: int) -> bool:
     return a > b
 
 print(es_mayor(10, 5))`,
@@ -516,7 +517,7 @@ if es_mayor(edad, 18):
     // LEVEL 4: VARIABLE SCOPE (Questions 13-15)
     {
         question: "**¿Qué imprime este código?**\n\nLas variables dentro de una función son **locales** a esa función.",
-        code: `def mi_funcion():
+        code: `def mi_funcion() -> None:
     x = 10
     print(x)
 
@@ -563,7 +564,7 @@ print(x)        # Salida: 10
         question: "**¿Qué imprime este código?**\n\nLas variables globales pueden leerse desde dentro de funciones.",
         code: `nombre = "Python"
 
-def mostrar_nombre():
+def mostrar_nombre() -> None:
     print(nombre)
 
 mostrar_nombre()`,
@@ -615,11 +616,11 @@ def modificar():
     },
     {
         question: "**¿Qué imprime este código?**\n\nCada función tiene su propio espacio de variables locales.",
-        code: `def funcion_a():
+        code: `def funcion_a() -> int:
     x = 5
     return x
 
-def funcion_b():
+def funcion_b() -> int:
     x = 10
     return x
 
@@ -669,7 +670,7 @@ funcion_b → { x: 10 }
     // LEVEL 5: ADVANCED PARAMETERS (Questions 16-18)
     {
         question: "**¿Qué imprime este código?**\n\nLos argumentos nombrados (keyword arguments) permiten especificar parámetros por nombre.",
-        code: `def presentar(nombre, edad, ciudad):
+        code: `def presentar(nombre: str, edad: int, ciudad: str) -> None:
     print(f"{nombre} tiene {edad} años y vive en {ciudad}")
 
 presentar(edad=25, ciudad="Madrid", nombre="Ana")`,
@@ -709,7 +710,7 @@ presentar(nombre="Ana", 25, "Madrid")       # ❌ Error (posicionales después d
     },
     {
         question: "**¿Qué imprime este código?**\n\n`*args` permite pasar un número variable de argumentos posicionales.",
-        code: `def sumar_todos(*numeros):
+        code: `def sumar_todos(*numeros: int) -> int:
     total = 0
     for num in numeros:
         total += num
@@ -760,7 +761,9 @@ sumar_todos(10, 20, 30, 40) # 100
     },
     {
         question: "**¿Qué imprime este código?**\n\n`**kwargs` permite pasar un número variable de argumentos nombrados.",
-        code: `def mostrar_info(**datos):
+        code: `from typing import Any
+
+def mostrar_info(**datos: Any) -> None:
     for clave, valor in datos.items():
         print(f"{clave}: {valor}")
 
@@ -924,8 +927,8 @@ ordenados = sorted(nombres, key=lambda x: x.lower())
     // LEVEL 7: ADVANCED CONCEPTS (Questions 21-22)
     {
         question: "**¿Qué imprime este código?**\n\nLas funciones pueden estar anidadas dentro de otras funciones.",
-        code: `def exterior(x):
-    def interior(y):
+        code: `def exterior(x: int) -> int:
+    def interior(y: int) -> int:
         return x + y
     return interior(5)
 
@@ -980,13 +983,15 @@ print(triple(5))  # 15
     },
     {
         question: "**¿Qué imprime este código?**\n\nLas funciones son objetos de primera clase: pueden pasarse como argumentos.",
-        code: `def aplicar_operacion(func, x, y):
+        code: `from typing import Callable
+
+def aplicar_operacion(func: Callable[[int, int], int], x: int, y: int) -> int:
     return func(x, y)
 
-def sumar(a, b):
+def sumar(a: int, b: int) -> int:
     return a + b
 
-def multiplicar(a, b):
+def multiplicar(a: int, b: int) -> int:
     return a * b
 
 resultado1 = aplicar_operacion(sumar, 5, 3)
@@ -1042,5 +1047,473 @@ button.on_click(mi_funcion)
 # map, filter, reduce
 list(map(mi_funcion, datos))
 \`\`\``
+    },
+
+    // LEVEL 8: ADVANCED REAL-WORLD SCENARIOS (Questions 23-26)
+    {
+        question: "**Sistema de validación con funciones auxiliares**\n\nEstás desarrollando un sistema de registro de usuarios. Necesitas validar que cada usuario tenga datos correctos antes de registrarlo.\n\nLa función `validar_usuario` usa funciones auxiliares para verificar diferentes aspectos del usuario.\n\n¿Cuál será el valor de `usuarios_validos`?",
+        code: `from typing import Dict, List, Any
+
+def es_email_valido(email: str) -> bool:
+    \"\"\"Verifica que el email contenga '@' y un dominio.\"\"\"
+    if '@' not in email:
+        return False
+    partes = email.split('@')
+    return len(partes) == 2 and '.' in partes[1]
+
+def es_edad_valida(edad: Any) -> bool:
+    \"\"\"Verifica que la edad sea un entero entre 18 y 120.\"\"\"
+    if not isinstance(edad, int):
+        return False
+    return 18 <= edad <= 120
+
+def validar_usuario(usuario: Dict[str, Any]) -> bool:
+    \"\"\"Valida un usuario usando funciones auxiliares.\"\"\"
+    email = usuario.get('email', '')
+    edad = usuario.get('edad')
+    
+    if not es_email_valido(email):
+        return False
+    if not es_edad_valida(edad):
+        return False
+    
+    return True
+
+def procesar_usuarios(usuarios: List[Dict[str, Any]]) -> List[str]:
+    \"\"\"Retorna los IDs de usuarios válidos.\"\"\"
+    return [u['id'] for u in usuarios if validar_usuario(u)]
+
+usuarios = [
+    {'id': 'u1', 'email': 'ana@example.com', 'edad': 25},
+    {'id': 'u2', 'email': 'carlos.gmail.com', 'edad': 30},  # Email sin @
+    {'id': 'u3', 'email': 'maria@mail', 'edad': 22},        # Email sin dominio válido
+    {'id': 'u4', 'email': 'luis@test.org', 'edad': 17},     # Edad < 18
+    {'id': 'u5', 'email': 'sofia@domain.co', 'edad': 35}
+]
+
+usuarios_validos = procesar_usuarios(usuarios)`,
+        options: [
+            "['u1', 'u5']",
+            "['u1', 'u2', 'u5']",
+            "['u1', 'u3', 'u5']",
+            "['u1', 'u4', 'u5']"
+        ],
+        correct: "['u1', 'u5']",
+        explanation: `**Respuesta correcta: ['u1', 'u5']**
+
+Analicemos cada usuario paso a paso:
+
+**Usuario u1**: \`{'id': 'u1', 'email': 'ana@example.com', 'edad': 25}\`
+- \`es_email_valido('ana@example.com')\`:
+  - Contiene '@' ✅
+  - Al dividir: ['ana', 'example.com']
+  - 'example.com' contiene '.' ✅
+  - **Email válido** ✅
+- \`es_edad_valida(25)\`:
+  - Es int ✅
+  - 18 <= 25 <= 120 ✅
+  - **Edad válida** ✅
+- **USUARIO VÁLIDO** ✅
+
+**Usuario u2**: \`{'id': 'u2', 'email': 'carlos.gmail.com', 'edad': 30}\`
+- \`es_email_valido('carlos.gmail.com')\`:
+  - NO contiene '@' ❌
+  - **Email inválido** ❌
+- **USUARIO INVÁLIDO** ❌
+
+**Usuario u3**: \`{'id': 'u3', 'email': 'maria@mail', 'edad': 22}\`
+- \`es_email_valido('maria@mail')\`:
+  - Contiene '@' ✅
+  - Al dividir: ['maria', 'mail']
+  - 'mail' NO contiene '.' ❌
+  - **Email inválido** ❌
+- **USUARIO INVÁLIDO** ❌
+
+**Usuario u4**: \`{'id': 'u4', 'email': 'luis@test.org', 'edad': 17}\`
+- \`es_email_valido('luis@test.org')\`:
+  - Contiene '@' ✅
+  - 'test.org' contiene '.' ✅
+  - **Email válido** ✅
+- \`es_edad_valida(17)\`:
+  - Es int ✅
+  - 17 < 18 ❌
+  - **Edad inválida** ❌
+- **USUARIO INVÁLIDO** ❌
+
+**Usuario u5**: \`{'id': 'u5', 'email': 'sofia@domain.co', 'edad': 35}\`
+- \`es_email_valido('sofia@domain.co')\`:
+  - Contiene '@' ✅
+  - 'domain.co' contiene '.' ✅
+  - **Email válido** ✅
+- \`es_edad_valida(35)\`:
+  - Es int ✅
+  - 18 <= 35 <= 120 ✅
+  - **Edad válida** ✅
+- **USUARIO VÁLIDO** ✅
+
+**Resultado**: Solo u1 y u5 son válidos → \`['u1', 'u5']\`
+
+**Conceptos clave:**
+- **Funciones auxiliares**: Encapsulan lógica específica (validar email, validar edad)
+- **Composición**: \`validar_usuario\` combina múltiples validaciones
+- **Separación de responsabilidades**: Cada función tiene una tarea clara
+- **Reutilización**: Las funciones auxiliares pueden usarse en otros contextos`
+    },
+    {
+        question: "**Transformación de datos con funciones de orden superior**\n\nEstás procesando una lista de transacciones financieras. Necesitas filtrar transacciones válidas y calcular comisiones.\n\n¿Cuál será el valor de `total_comisiones`?",
+        code: `from typing import List, Dict, Callable
+
+def es_transaccion_valida(transaccion: Dict[str, float]) -> bool:
+    \"\"\"Verifica que la transacción tenga monto positivo.\"\"\"
+    return transaccion.get('monto', 0) > 0
+
+def calcular_comision(transaccion: Dict[str, float]) -> float:
+    \"\"\"Calcula 2.5% de comisión sobre el monto.\"\"\"
+    return transaccion['monto'] * 0.025
+
+def procesar_transacciones(
+    transacciones: List[Dict[str, float]], 
+    filtro: Callable[[Dict[str, float]], bool],
+    transformador: Callable[[Dict[str, float]], float]
+) -> float:
+    \"\"\"Aplica filtro y transformación a las transacciones.\"\"\"
+    validas = filter(filtro, transacciones)
+    comisiones = map(transformador, validas)
+    return sum(comisiones)
+
+transacciones = [
+    {'id': 1, 'monto': 1000.0},
+    {'id': 2, 'monto': -500.0},   # Monto negativo (inválida)
+    {'id': 3, 'monto': 2000.0},
+    {'id': 4, 'monto': 0},        # Monto cero (inválida)
+    {'id': 5, 'monto': 1500.0}
+]
+
+total_comisiones = procesar_transacciones(
+    transacciones, 
+    es_transaccion_valida, 
+    calcular_comision
+)`,
+        options: [
+            "112.5",
+            "100.0",
+            "137.5",
+            "125.0"
+        ],
+        correct: "112.5",
+        explanation: `**Respuesta correcta: 112.5**
+
+Analicemos el proceso paso a paso:
+
+**Paso 1: Filtrar transacciones válidas**
+
+\`filter(es_transaccion_valida, transacciones)\` verifica cada transacción:
+
+- T1: \`{'id': 1, 'monto': 1000.0}\` → 1000.0 > 0 ✅ **VÁLIDA**
+- T2: \`{'id': 2, 'monto': -500.0}\` → -500.0 > 0 ❌ **INVÁLIDA**
+- T3: \`{'id': 3, 'monto': 2000.0}\` → 2000.0 > 0 ✅ **VÁLIDA**
+- T4: \`{'id': 4, 'monto': 0}\` → 0 > 0 ❌ **INVÁLIDA**
+- T5: \`{'id': 5, 'monto': 1500.0}\` → 1500.0 > 0 ✅ **VÁLIDA**
+
+Transacciones válidas: T1, T3, T5
+
+**Paso 2: Calcular comisiones (2.5% de cada monto)**
+
+\`map(calcular_comision, validas)\`:
+
+- T1: 1000.0 × 0.025 = **25.0**
+- T3: 2000.0 × 0.025 = **50.0**
+- T5: 1500.0 × 0.025 = **37.5**
+
+**Paso 3: Sumar todas las comisiones**
+
+\`sum([25.0, 50.0, 37.5])\` = **112.5**
+
+**Desglose detallado:**
+\`\`\`python
+# Transacciones válidas después del filtro:
+validas = [
+    {'id': 1, 'monto': 1000.0},  # 1000 × 2.5% = 25
+    {'id': 3, 'monto': 2000.0},  # 2000 × 2.5% = 50
+    {'id': 5, 'monto': 1500.0}   # 1500 × 2.5% = 37.5
+]
+
+# Comisiones: [25.0, 50.0, 37.5]
+# Total: 25 + 50 + 37.5 = 112.5
+\`\`\`
+
+**Conceptos clave:**
+- **Funciones de orden superior**: \`procesar_transacciones\` recibe funciones como parámetros
+- **filter()**: Filtra elementos que cumplen una condición
+- **map()**: Transforma cada elemento aplicando una función
+- **Composición funcional**: Combinar filter → map → sum
+- **Flexibilidad**: Podemos cambiar el filtro o transformador sin modificar \`procesar_transacciones\`
+
+**Ventajas del enfoque:**
+\`\`\`python
+# Mismo código, diferentes cálculos:
+# Podríamos calcular IVA (16%) en lugar de comisión:
+calcular_iva = lambda t: t['monto'] * 0.16
+
+# O usar un filtro diferente:
+es_monto_alto = lambda t: t['monto'] > 1500
+
+# La función procesar_transacciones no cambia
+\`\`\``
+    },
+    {
+        question: "**Decorador simple con closures**\n\nLos decoradores son funciones que modifican el comportamiento de otras funciones. Este ejemplo muestra un decorador que registra cuántas veces se llama una función.\n\n¿Cuál será el valor de `resultado`?",
+        code: `from typing import Callable, Any
+
+def contador_llamadas(func: Callable[..., Any]) -> Callable[..., Any]:
+    \"\"\"Decorador que cuenta cuántas veces se llama una función.\"\"\"
+    llamadas = {'count': 0}  # Usamos dict para mutabilidad en closure
+    
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
+        llamadas['count'] += 1
+        print(f"Llamada #{llamadas['count']} a {func.__name__}")
+        return func(*args, **kwargs)
+    
+    wrapper.llamadas = llamadas  # Exponemos el contador
+    return wrapper
+
+@contador_llamadas
+def sumar(a: int, b: int) -> int:
+    \"\"\"Suma dos números.\"\"\"
+    return a + b
+
+# Ejecutamos la función varias veces
+r1 = sumar(2, 3)   # Primera llamada
+r2 = sumar(5, 7)   # Segunda llamada
+r3 = sumar(10, 20) # Tercera llamada
+
+resultado = sumar.llamadas['count']`,
+        options: [
+            "3",
+            "1",
+            "30",
+            "Error"
+        ],
+        correct: "3",
+        explanation: `**Respuesta correcta: 3**
+
+Este ejemplo demuestra conceptos avanzados de funciones en Python:
+
+**¿Qué es un decorador?**
+
+Un decorador es una función que toma otra función y extiende su comportamiento sin modificarla directamente.
+
+\`\`\`python
+@contador_llamadas
+def sumar(a, b):
+    return a + b
+
+# Es equivalente a:
+def sumar(a, b):
+    return a + b
+sumar = contador_llamadas(sumar)
+\`\`\`
+
+**Paso a paso de la ejecución:**
+
+1. **Aplicación del decorador (al definir la función)**:
+   - \`contador_llamadas(sumar)\` se ejecuta
+   - Se crea \`llamadas = {'count': 0}\`
+   - Se define \`wrapper\` que tiene acceso a \`llamadas\` (closure)
+   - \`wrapper\` reemplaza a \`sumar\`
+
+2. **Primera llamada**: \`sumar(2, 3)\`
+   - Se ejecuta \`wrapper(2, 3)\`
+   - \`llamadas['count']\` incrementa: 0 → **1**
+   - Imprime: "Llamada #1 a sumar"
+   - Ejecuta \`func(2, 3)\` → retorna 5
+   - \`r1 = 5\`
+
+3. **Segunda llamada**: \`sumar(5, 7)\`
+   - Se ejecuta \`wrapper(5, 7)\`
+   - \`llamadas['count']\` incrementa: 1 → **2**
+   - Imprime: "Llamada #2 a sumar"
+   - Ejecuta \`func(5, 7)\` → retorna 12
+   - \`r2 = 12\`
+
+4. **Tercera llamada**: \`sumar(10, 20)\`
+   - Se ejecuta \`wrapper(10, 20)\`
+   - \`llamadas['count']\` incrementa: 2 → **3**
+   - Imprime: "Llamada #3 a sumar"
+   - Ejecuta \`func(10, 20)\` → retorna 30
+   - \`r3 = 30\`
+
+5. **Acceso al contador**:
+   - \`sumar.llamadas['count']\` → **3**
+
+**Salida en consola:**
+\`\`\`
+Llamada #1 a sumar
+Llamada #2 a sumar
+Llamada #3 a sumar
+\`\`\`
+
+**Conceptos clave:**
+
+1. **Closure**: La función \`wrapper\` "recuerda" la variable \`llamadas\` del scope de \`contador_llamadas\`
+2. **Funciones de orden superior**: \`contador_llamadas\` toma y retorna funciones
+3. **\*args y \*\*kwargs**: Permiten que el wrapper acepte cualquier combinación de argumentos
+4. **Decorador**: Patrón para extender funcionalidad sin modificar la función original
+5. **Mutabilidad en closures**: Usamos un diccionario para poder modificar el valor
+
+**Uso práctico de decoradores:**
+\`\`\`python
+# Medir tiempo de ejecución
+@medir_tiempo
+def operacion_lenta():
+    time.sleep(2)
+
+# Requerir autenticación
+@requiere_login
+def ver_perfil(user_id):
+    return obtener_usuario(user_id)
+
+# Cachear resultados
+@cache
+def calcular_fibonacci(n):
+    if n <= 1: return n
+    return calcular_fibonacci(n-1) + calcular_fibonacci(n-2)
+\`\`\``
+    },
+    {
+        question: "**Funciones recursivas con validación**\n\nLa recursión permite que una función se llame a sí misma. Este ejemplo calcula el factorial con validación de entrada.\n\n¿Cuál será el valor de `resultado`?",
+        code: `from typing import Union
+
+def validar_factorial(n: int) -> None:
+    \"\"\"Valida que n sea apropiado para calcular factorial.\"\"\"
+    if not isinstance(n, int):
+        raise TypeError("El factorial solo acepta enteros")
+    if n < 0:
+        raise ValueError("El factorial no está definido para negativos")
+
+def factorial(n: int) -> int:
+    \"\"\"Calcula n! usando recursión con validación.\"\"\"
+    validar_factorial(n)
+    
+    # Caso base
+    if n == 0 or n == 1:
+        return 1
+    
+    # Caso recursivo
+    return n * factorial(n - 1)
+
+def factorial_seguro(n: int) -> Union[int, str]:
+    \"\"\"Wrapper que maneja errores del factorial.\"\"\"
+    try:
+        return factorial(n)
+    except (TypeError, ValueError) as e:
+        return f"Error: {type(e).__name__}"
+
+# Cálculo del factorial de 5
+resultado = factorial_seguro(5)`,
+        options: [
+            "120",
+            "15",
+            "Error: ValueError",
+            "5"
+        ],
+        correct: "120",
+        explanation: `**Respuesta correcta: 120**
+
+**Análisis de la recursión:**
+
+El factorial de 5 (escrito 5!) se calcula como: 5 × 4 × 3 × 2 × 1
+
+**Traza de ejecución paso a paso:**
+
+\`\`\`python
+factorial(5)
+  → validar_factorial(5)  # ✅ 5 es int y >= 0
+  → 5 no es 0 ni 1, entonces:
+  → return 5 * factorial(4)
+       factorial(4)
+         → validar_factorial(4)  # ✅
+         → return 4 * factorial(3)
+              factorial(3)
+                → validar_factorial(3)  # ✅
+                → return 3 * factorial(2)
+                     factorial(2)
+                       → validar_factorial(2)  # ✅
+                       → return 2 * factorial(1)
+                            factorial(1)
+                              → validar_factorial(1)  # ✅
+                              → 1 == 1 (caso base)
+                              → return 1
+                       → return 2 * 1 = 2
+                → return 3 * 2 = 6
+         → return 4 * 6 = 24
+  → return 5 * 24 = 120
+\`\`\`
+
+**Proceso de "unwinding" (vuelta):**
+
+1. \`factorial(1)\` retorna **1** (caso base)
+2. \`factorial(2)\` retorna 2 × 1 = **2**
+3. \`factorial(3)\` retorna 3 × 2 = **6**
+4. \`factorial(4)\` retorna 4 × 6 = **24**
+5. \`factorial(5)\` retorna 5 × 24 = **120**
+
+**Stack de llamadas (pila):**
+
+\`\`\`
+Nivel 5: factorial(5) → espera a factorial(4)
+Nivel 4: factorial(4) → espera a factorial(3)
+Nivel 3: factorial(3) → espera a factorial(2)
+Nivel 2: factorial(2) → espera a factorial(1)
+Nivel 1: factorial(1) → retorna 1 (caso base)
+↓ Se resuelve la pila hacia arriba ↓
+Nivel 2: 2 * 1 = 2
+Nivel 3: 3 * 2 = 6
+Nivel 4: 4 * 6 = 24
+Nivel 5: 5 * 24 = 120 ← RESULTADO FINAL
+\`\`\`
+
+**Verificación con factorial_seguro:**
+
+\`\`\`python
+factorial_seguro(5)
+  → try:
+       return factorial(5)  # Retorna 120
+     # No hay excepción
+  → return 120
+\`\`\`
+
+**Conceptos clave:**
+
+1. **Recursión**: Una función que se llama a sí misma
+2. **Caso base**: Condición que detiene la recursión (n == 0 o n == 1)
+3. **Caso recursivo**: Reduce el problema (n × factorial(n-1))
+4. **Validación**: Verifica entrada antes de procesar
+5. **Manejo de errores**: try/except captura excepciones
+6. **Stack de llamadas**: Cada llamada recursiva se apila
+
+**Ejemplos de validación:**
+
+\`\`\`python
+# Estas llamadas generarían errores:
+factorial_seguro(-3)    # "Error: ValueError"
+factorial_seguro(2.5)   # "Error: TypeError"
+factorial_seguro("5")   # "Error: TypeError"
+
+# Estas funcionan correctamente:
+factorial_seguro(0)     # 1 (caso base)
+factorial_seguro(3)     # 6 (3 × 2 × 1)
+factorial_seguro(5)     # 120 (5 × 4 × 3 × 2 × 1)
+\`\`\`
+
+**Por qué usar recursión:**
+- Código más elegante y conciso
+- Natural para problemas divisibles en subproblemas similares
+- Útil para estructuras de datos recursivas (árboles, listas enlazadas)
+
+**Advertencia:**
+- Cada llamada recursiva usa memoria (stack)
+- Para n muy grande puede causar "stack overflow"
+- Python tiene límite de recursión (generalmente ~1000 niveles)`
     }
 ];

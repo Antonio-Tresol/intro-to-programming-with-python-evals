@@ -4,10 +4,10 @@ Comprehensive beginner-friendly quiz covering Python functions from basic concep
 
 ## 📊 Quiz Information
 
-- **Total Questions**: 22
+- **Total Questions**: 26
 - **Difficulty**: Progressive (Beginner → Advanced)
-- **Topics Covered**: 7 main areas
-- **Estimated Time**: 20-30 minutes
+- **Topics Covered**: 8 main areas
+- **Estimated Time**: 30-40 minutes
 - **Language**: Spanish (Español)
 
 ## 🎯 Learning Objectives
@@ -52,6 +52,12 @@ This quiz helps you master:
    - Nested functions (closures)
    - Functions as first-class objects
    - Higher-order functions
+
+8. **Real-World Scenarios** (Questions 23-26)
+   - User validation with auxiliary functions
+   - Transaction processing with higher-order functions
+   - Decorators and closures
+   - Recursive functions with validation
 
 ## 📚 Prerequisites
 
@@ -113,6 +119,7 @@ Each question follows this structure:
 | 5 | Advanced parameters | 16-18 | ⭐⭐⭐ Medium-Hard |
 | 6 | Lambda functions | 19-20 | ⭐⭐⭐⭐ Hard |
 | 7 | Advanced concepts | 21-22 | ⭐⭐⭐⭐ Hard |
+| 8 | Real-world scenarios | 23-26 | ⭐⭐⭐⭐⭐ Expert |
 
 ## 📖 Study Tips
 

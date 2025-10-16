@@ -430,6 +430,161 @@ def test_question_22():
         return False
 
 
+def test_question_23():
+    """Test Q23: User validation system."""
+    print("Testing Q23: User validation system...")
+    
+    def es_email_valido(email):
+        if '@' not in email:
+            return False
+        partes = email.split('@')
+        return len(partes) == 2 and '.' in partes[1]
+    
+    def es_edad_valida(edad):
+        if not isinstance(edad, int):
+            return False
+        return 18 <= edad <= 120
+    
+    def validar_usuario(usuario):
+        email = usuario.get('email', '')
+        edad = usuario.get('edad')
+        
+        if not es_email_valido(email):
+            return False
+        if not es_edad_valida(edad):
+            return False
+        
+        return True
+    
+    def procesar_usuarios(usuarios):
+        return [u['id'] for u in usuarios if validar_usuario(u)]
+    
+    usuarios = [
+        {'id': 'u1', 'email': 'ana@example.com', 'edad': 25},
+        {'id': 'u2', 'email': 'carlos.gmail.com', 'edad': 30},
+        {'id': 'u3', 'email': 'maria@mail', 'edad': 22},
+        {'id': 'u4', 'email': 'luis@test.org', 'edad': 17},
+        {'id': 'u5', 'email': 'sofia@domain.co', 'edad': 35}
+    ]
+    
+    resultado = procesar_usuarios(usuarios)
+    expected = ['u1', 'u5']
+    
+    if resultado == expected:
+        print(f"  ✅ Q23 PASSED - Validation system works correctly")
+        return True
+    else:
+        print(f"  ❌ Q23 FAILED - Expected {expected}, got {resultado}")
+        return False
+
+
+def test_question_24():
+    """Test Q24: Transaction processing with higher-order functions."""
+    print("Testing Q24: Transaction processing...")
+    
+    def es_transaccion_valida(transaccion):
+        return transaccion.get('monto', 0) > 0
+    
+    def calcular_comision(transaccion):
+        return transaccion['monto'] * 0.025
+    
+    def procesar_transacciones(transacciones, filtro, transformador):
+        validas = filter(filtro, transacciones)
+        comisiones = map(transformador, validas)
+        return sum(comisiones)
+    
+    transacciones = [
+        {'id': 1, 'monto': 1000.0},
+        {'id': 2, 'monto': -500.0},
+        {'id': 3, 'monto': 2000.0},
+        {'id': 4, 'monto': 0},
+        {'id': 5, 'monto': 1500.0}
+    ]
+    
+    total_comisiones = procesar_transacciones(
+        transacciones, 
+        es_transaccion_valida, 
+        calcular_comision
+    )
+    
+    expected = 112.5
+    
+    if abs(total_comisiones - expected) < 0.001:
+        print(f"  ✅ Q24 PASSED - Total commission is {expected}")
+        return True
+    else:
+        print(f"  ❌ Q24 FAILED - Expected {expected}, got {total_comisiones}")
+        return False
+
+
+def test_question_25():
+    """Test Q25: Simple decorator with closures."""
+    print("Testing Q25: Decorator with call counter...")
+    
+    def contador_llamadas(func):
+        llamadas = {'count': 0}
+        
+        def wrapper(*args, **kwargs):
+            llamadas['count'] += 1
+            return func(*args, **kwargs)
+        
+        wrapper.llamadas = llamadas
+        return wrapper
+    
+    @contador_llamadas
+    def sumar(a, b):
+        return a + b
+    
+    r1 = sumar(2, 3)
+    r2 = sumar(5, 7)
+    r3 = sumar(10, 20)
+    
+    resultado = sumar.llamadas['count']
+    expected = 3
+    
+    if resultado == expected:
+        print(f"  ✅ Q25 PASSED - Decorator counted {expected} calls")
+        return True
+    else:
+        print(f"  ❌ Q25 FAILED - Expected {expected}, got {resultado}")
+        return False
+
+
+def test_question_26():
+    """Test Q26: Recursive factorial with validation."""
+    print("Testing Q26: Recursive factorial...")
+    
+    def validar_factorial(n):
+        if not isinstance(n, int):
+            raise TypeError("El factorial solo acepta enteros")
+        if n < 0:
+            raise ValueError("El factorial no está definido para negativos")
+    
+    def factorial(n):
+        validar_factorial(n)
+        
+        if n == 0 or n == 1:
+            return 1
+        
+        return n * factorial(n - 1)
+    
+    def factorial_seguro(n):
+        try:
+            return factorial(n)
+        except (TypeError, ValueError) as e:
+            return f"Error: {type(e).__name__}"
+    
+    resultado = factorial_seguro(5)
+    expected = 120
+    
+    if resultado == expected:
+        print(f"  ✅ Q26 PASSED - Factorial of 5 is {expected}")
+        return True
+    else:
+        print(f"  ❌ Q26 FAILED - Expected {expected}, got {resultado}")
+        return False
+
+
 def run_all_tests():
     """Run all validation tests."""
     print("=" * 60)
@@ -460,6 +615,10 @@ def run_all_tests():
         test_question_20,
         test_question_21,
         test_question_22,
+        test_question_23,
+        test_question_24,
+        test_question_25,
+        test_question_26,
     ]
     
     results = []
