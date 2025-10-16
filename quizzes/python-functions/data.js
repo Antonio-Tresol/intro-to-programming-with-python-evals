@@ -221,7 +221,7 @@ sumar(5)`,
 Este código genera un **TypeError** porque falta un argumento:
 
 \`\`\`python
-def sumar(a, b):  # Función espera 2 parámetros
+def sumar(a: int, b: int) -> None:
     print(a + b)
 
 sumar(5)  # Solo pasamos 1 argumento
@@ -239,7 +239,7 @@ sumar(5)  # Solo pasamos 1 argumento
 sumar(5, 3)  # Salida: 8
 
 # Opción 2: Usar un valor por defecto
-def sumar(a, b=0):
+def sumar(a: int, b: int = 0) -> None:
     print(a + b)
 sumar(5)  # Salida: 5
 \`\`\``
@@ -263,7 +263,7 @@ calcular(2, 3, 4)`,
 Seguimos el orden de operaciones matemáticas (PEMDAS):
 
 \`\`\`python
-def calcular(x, y, z):
+def calcular(x: int, y: int, z: int) -> None:
     resultado = x + y * z
     print(resultado)
 
@@ -302,7 +302,7 @@ saludar()`,
 Los **parámetros con valores por defecto** son opcionales:
 
 \`\`\`python
-def saludar(nombre="Invitado"):  # "Invitado" es el valor por defecto
+def saludar(nombre: str = "Invitado") -> None:
     print("Bienvenido, " + nombre)
 
 saludar()           # No pasamos argumento
@@ -321,7 +321,7 @@ saludar("Carlos")   # Pasamos un argumento
 
 **Sintaxis:**
 \`\`\`python
-def funcion(parametro_obligatorio, parametro_opcional="valor_por_defecto"):
+def funcion(parametro_obligatorio: tipo, parametro_opcional: tipo = "valor_por_defecto") -> tipo_retorno:
     pass
 \`\`\``
     },
@@ -946,10 +946,10 @@ print(resultado)`,
 Las **funciones anidadas** (nested functions) pueden acceder a variables de la función externa:
 
 \`\`\`python
-def exterior(x):           # x = 10
-    def interior(y):       # Función anidada
-        return x + y       # Accede a x de exterior y recibe y
-    return interior(5)     # Llama a interior con y = 5
+def exterior(x: int) -> int:
+    def interior(y: int) -> int:
+        return x + y
+    return interior(5)
 
 resultado = exterior(10)
 # x = 10
@@ -969,8 +969,8 @@ print(resultado)  # Salida: 15
 
 **Otro ejemplo:**
 \`\`\`python
-def crear_multiplicador(n):
-    def multiplicar(x):
+def crear_multiplicador(n: int):
+    def multiplicar(x: int) -> int:
         return x * n
     return multiplicar
 
@@ -1009,13 +1009,15 @@ print(resultado1, resultado2)`,
 En Python, las funciones son **objetos de primera clase**: pueden pasarse como argumentos:
 
 \`\`\`python
-def aplicar_operacion(func, x, y):
-    return func(x, y)  # Llama a la función recibida
+from typing import Callable
 
-def sumar(a, b):
+def aplicar_operacion(func: Callable[[int, int], int], x: int, y: int) -> int:
+    return func(x, y)
+
+def sumar(a: int, b: int) -> int:
     return a + b
 
-def multiplicar(a, b):
+def multiplicar(a: int, b: int) -> int:
     return a * b
 
 resultado1 = aplicar_operacion(sumar, 5, 3)
@@ -1035,6 +1037,7 @@ print(resultado1, resultado2)  # 8 15
 - **Función como objeto**: Pasamos \`sumar\` sin paréntesis (no \`sumar()\`)
 - **Callback**: \`func\` es un "callback" que se ejecuta dentro de otra función
 - **Flexibilidad**: Podemos pasar diferentes funciones para diferentes comportamientos
+- **Type hint**: \`Callable[[int, int], int]\` indica una función que toma dos ints y retorna un int
 
 **Usos comunes:**
 \`\`\`python
@@ -1262,123 +1265,72 @@ es_monto_alto = lambda t: t['monto'] > 1500
 \`\`\``
     },
     {
-        question: "**Decorador simple con closures**\n\nLos decoradores son funciones que modifican el comportamiento de otras funciones. Este ejemplo muestra un decorador que registra cuántas veces se llama una función.\n\n¿Cuál será el valor de `resultado`?",
-        code: `from typing import Callable, Any
+        question: "**¿Qué imprime este código?**\n\nPractica leer y entender llamadas de funciones con múltiples parámetros.",
+        code: `def calcular_area(ancho: float, alto: float) -> float:
+    \"\"\"Calcula el área de un rectángulo.\"\"\"
+    return ancho * alto
 
-def contador_llamadas(func: Callable[..., Any]) -> Callable[..., Any]:
-    \"\"\"Decorador que cuenta cuántas veces se llama una función.\"\"\"
-    llamadas = {'count': 0}  # Usamos dict para mutabilidad en closure
-    
-    def wrapper(*args: Any, **kwargs: Any) -> Any:
-        llamadas['count'] += 1
-        print(f"Llamada #{llamadas['count']} a {func.__name__}")
-        return func(*args, **kwargs)
-    
-    wrapper.llamadas = llamadas  # Exponemos el contador
-    return wrapper
+def calcular_perimetro(ancho: float, alto: float) -> float:
+    \"\"\"Calcula el perímetro de un rectángulo.\"\"\"
+    return 2 * (ancho + alto)
 
-@contador_llamadas
-def sumar(a: int, b: int) -> int:
-    \"\"\"Suma dos números.\"\"\"
-    return a + b
-
-# Ejecutamos la función varias veces
-r1 = sumar(2, 3)   # Primera llamada
-r2 = sumar(5, 7)   # Segunda llamada
-r3 = sumar(10, 20) # Tercera llamada
-
-resultado = sumar.llamadas['count']`,
+area = calcular_area(5.0, 3.0)
+perimetro = calcular_perimetro(5.0, 3.0)
+print(f"Área: {area}, Perímetro: {perimetro}")`,
         options: [
-            "3",
-            "1",
-            "30",
+            "Área: 15.0, Perímetro: 16.0",
+            "Área: 8.0, Perímetro: 15.0",
+            "Área: 16.0, Perímetro: 15.0",
             "Error"
         ],
-        correct: "3",
-        explanation: `**Respuesta correcta: 3**
+        correct: "Área: 15.0, Perímetro: 16.0",
+        explanation: `**Respuesta correcta: Área: 15.0, Perímetro: 16.0**
 
-Este ejemplo demuestra conceptos avanzados de funciones en Python:
+Analicemos las llamadas a funciones paso a paso:
 
-**¿Qué es un decorador?**
-
-Un decorador es una función que toma otra función y extiende su comportamiento sin modificarla directamente.
-
+**Primera llamada - calcular_area(5.0, 3.0):**
 \`\`\`python
-@contador_llamadas
-def sumar(a, b):
-    return a + b
+def calcular_area(ancho: float, alto: float) -> float:
+    return ancho * alto
 
-# Es equivalente a:
-def sumar(a, b):
-    return a + b
-sumar = contador_llamadas(sumar)
+area = calcular_area(5.0, 3.0)
+# ancho = 5.0
+# alto = 3.0
+# return 5.0 * 3.0 = 15.0
+# area = 15.0
 \`\`\`
 
-**Paso a paso de la ejecución:**
+**Segunda llamada - calcular_perimetro(5.0, 3.0):**
+\`\`\`python
+def calcular_perimetro(ancho: float, alto: float) -> float:
+    return 2 * (ancho + alto)
 
-1. **Aplicación del decorador (al definir la función)**:
-   - \`contador_llamadas(sumar)\` se ejecuta
-   - Se crea \`llamadas = {'count': 0}\`
-   - Se define \`wrapper\` que tiene acceso a \`llamadas\` (closure)
-   - \`wrapper\` reemplaza a \`sumar\`
-
-2. **Primera llamada**: \`sumar(2, 3)\`
-   - Se ejecuta \`wrapper(2, 3)\`
-   - \`llamadas['count']\` incrementa: 0 → **1**
-   - Imprime: "Llamada #1 a sumar"
-   - Ejecuta \`func(2, 3)\` → retorna 5
-   - \`r1 = 5\`
-
-3. **Segunda llamada**: \`sumar(5, 7)\`
-   - Se ejecuta \`wrapper(5, 7)\`
-   - \`llamadas['count']\` incrementa: 1 → **2**
-   - Imprime: "Llamada #2 a sumar"
-   - Ejecuta \`func(5, 7)\` → retorna 12
-   - \`r2 = 12\`
-
-4. **Tercera llamada**: \`sumar(10, 20)\`
-   - Se ejecuta \`wrapper(10, 20)\`
-   - \`llamadas['count']\` incrementa: 2 → **3**
-   - Imprime: "Llamada #3 a sumar"
-   - Ejecuta \`func(10, 20)\` → retorna 30
-   - \`r3 = 30\`
-
-5. **Acceso al contador**:
-   - \`sumar.llamadas['count']\` → **3**
-
-**Salida en consola:**
+perimetro = calcular_perimetro(5.0, 3.0)
+# ancho = 5.0
+# alto = 3.0
+# return 2 * (5.0 + 3.0)
+# return 2 * 8.0
+# return 16.0
+# perimetro = 16.0
 \`\`\`
-Llamada #1 a sumar
-Llamada #2 a sumar
-Llamada #3 a sumar
+
+**Salida final:**
+\`\`\`python
+print(f"Área: {area}, Perímetro: {perimetro}")
+# print(f"Área: {15.0}, Perímetro: {16.0}")
+# Área: 15.0, Perímetro: 16.0
 \`\`\`
 
 **Conceptos clave:**
+- **Orden de parámetros**: Los argumentos se asignan en orden (5.0 → ancho, 3.0 → alto)
+- **Múltiples funciones**: Podemos llamar diferentes funciones con los mismos datos
+- **f-strings**: Formato de cadenas con \`f"texto {variable}"\`
+- **Área del rectángulo**: base × altura
+- **Perímetro del rectángulo**: 2 × (base + altura)
 
-1. **Closure**: La función \`wrapper\` "recuerda" la variable \`llamadas\` del scope de \`contador_llamadas\`
-2. **Funciones de orden superior**: \`contador_llamadas\` toma y retorna funciones
-3. **\*args y \*\*kwargs**: Permiten que el wrapper acepte cualquier combinación de argumentos
-4. **Decorador**: Patrón para extender funcionalidad sin modificar la función original
-5. **Mutabilidad en closures**: Usamos un diccionario para poder modificar el valor
-
-**Uso práctico de decoradores:**
-\`\`\`python
-# Medir tiempo de ejecución
-@medir_tiempo
-def operacion_lenta():
-    time.sleep(2)
-
-# Requerir autenticación
-@requiere_login
-def ver_perfil(user_id):
-    return obtener_usuario(user_id)
-
-# Cachear resultados
-@cache
-def calcular_fibonacci(n):
-    if n <= 1: return n
-    return calcular_fibonacci(n-1) + calcular_fibonacci(n-2)
-\`\`\``
+**Verificación:**
+- Área: 5.0 × 3.0 = 15.0 ✅
+- Perímetro: 2 × (5.0 + 3.0) = 2 × 8.0 = 16.0 ✅`
     },
     {
         question: "**Funciones recursivas con validación**\n\nLa recursión permite que una función se llame a sí misma. Este ejemplo calcula el factorial con validación de entrada.\n\n¿Cuál será el valor de `resultado`?",

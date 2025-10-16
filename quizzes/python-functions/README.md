@@ -56,7 +56,7 @@ This quiz helps you master:
 8. **Real-World Scenarios** (Questions 23-26)
    - User validation with auxiliary functions
    - Transaction processing with higher-order functions
-   - Decorators and closures
+   - Multiple function calls with calculations
    - Recursive functions with validation
 
 ## 📚 Prerequisites

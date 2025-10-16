@@ -518,35 +518,26 @@ def test_question_24():
 
 
 def test_question_25():
-    """Test Q25: Simple decorator with closures."""
-    print("Testing Q25: Decorator with call counter...")
+    """Test Q25: Rectangle area and perimeter calculations."""
+    print("Testing Q25: Multiple function calls with geometry...")
     
-    def contador_llamadas(func):
-        llamadas = {'count': 0}
-        
-        def wrapper(*args, **kwargs):
-            llamadas['count'] += 1
-            return func(*args, **kwargs)
-        
-        wrapper.llamadas = llamadas
-        return wrapper
+    def calcular_area(ancho, alto):
+        return ancho * alto
     
-    @contador_llamadas
-    def sumar(a, b):
-        return a + b
+    def calcular_perimetro(ancho, alto):
+        return 2 * (ancho + alto)
     
-    r1 = sumar(2, 3)
-    r2 = sumar(5, 7)
-    r3 = sumar(10, 20)
+    area = calcular_area(5.0, 3.0)
+    perimetro = calcular_perimetro(5.0, 3.0)
     
-    resultado = sumar.llamadas['count']
-    expected = 3
+    expected_area = 15.0
+    expected_perimetro = 16.0
     
-    if resultado == expected:
-        print(f"  ✅ Q25 PASSED - Decorator counted {expected} calls")
+    if abs(area - expected_area) < 0.001 and abs(perimetro - expected_perimetro) < 0.001:
+        print(f"  ✅ Q25 PASSED - Area: {area}, Perimeter: {perimetro}")
         return True
     else:
-        print(f"  ❌ Q25 FAILED - Expected {expected}, got {resultado}")
+        print(f"  ❌ Q25 FAILED - Expected area={expected_area}, perimeter={expected_perimetro}, got area={area}, perimeter={perimetro}")
         return False
 
 
