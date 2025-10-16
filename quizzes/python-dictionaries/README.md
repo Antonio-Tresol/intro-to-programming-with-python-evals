@@ -1,99 +1,82 @@
-# Quiz Template
+# Quiz de Diccionarios en Python 📚
 
-This folder contains a template for creating new quizzes.
+Aprende a trabajar con diccionarios en Python desde lo básico hasta técnicas avanzadas.
 
-## 📋 How to Create a New Quiz
+## 📚 Descripción
 
-### Step 1: Copy the Template
-```bash
-cp -r quizzes/template quizzes/your-quiz-name
-cd quizzes/your-quiz-name
-```
+Este quiz cubre todos los aspectos de los diccionarios en Python, desde la creación básica hasta operaciones complejas. Diseñado para llevar a principiantes absolutos desde cero hasta un nivel avanzado con estructuras de datos clave-valor.
 
-### Step 2: Edit `data.js`
-1. Rename the variable from `templateQuizData` to your quiz name (e.g., `algorithmsQuizData`)
-2. Add your questions following this structure:
+## 🎯 Temas Cubiertos
 
-```javascript
-const yourQuizNameData = [
-    {
-        question: "Your question?",
-        code: `# Python code here`,
-        options: ["A", "B", "C", "D"],
-        correct: "C",
-        explanation: "Why C is correct..."
-    }
-];
-```
+### Nivel Básico (Preguntas 1-5)
+- ✅ Creación de diccionarios vacíos
+- ✅ Acceso a valores por clave
+- ✅ Crear diccionarios con pares clave-valor
+- ✅ Modificar y agregar elementos
+- ✅ Método `get()` vs acceso directo
 
-### Step 3: Edit `index.html`
-1. Update the title: `<title>Quiz de Python: Your Title</title>`
-2. Update the h1: `<h1>Your Quiz Title</h1>`
-3. Update the description: `<p>Your quiz description</p>`
-4. Update the init call: `QuizApp.init(yourQuizNameData);`
+### Nivel Intermedio (Preguntas 6-15)
+- ✅ Métodos `keys()`, `values()`, `items()`
+- ✅ Método `update()` - Combinar diccionarios
+- ✅ Método `pop()` - Eliminar y retornar
+- ✅ Operador `in` - Verificar claves
+- ✅ Método `setdefault()` - Valor por defecto
+- ✅ Función `len()` con diccionarios
+- ✅ Método `clear()` - Vaciar diccionario
+- ✅ Método `copy()` - Copiar vs referencia
+- ✅ Operador `|` - Unión de diccionarios (Python 3.9+)
+- ✅ Método `fromkeys()` - Crear con claves
 
-### Step 4: Add to Main Index
-Edit `/index.html` and add a card for your new quiz:
+### Nivel Avanzado (Preguntas 16-22)
+- ✅ Dictionary comprehensions básicas
+- ✅ Comprehensions con filtro
+- ✅ Comprehensions con transformación
+- ✅ Diccionarios anidados - Acceso multi-nivel
+- ✅ Diccionarios anidados - Iteración compleja
 
-```html
-<div class="quiz-card bg-white rounded-2xl shadow-lg overflow-hidden">
-    <div class="bg-gradient-to-r from-green-500 to-teal-500 p-6">
-        <h2 class="text-3xl font-bold text-white mb-2">
-            🎯 Your Quiz Title
-        </h2>
-        <p class="text-green-100">
-            Nivel: Intermediate
-        </p>
-    </div>
-    <div class="p-6">
-        <!-- Add description, tags, stats -->
-        <a href="quizzes/your-quiz-name/" 
-           class="block w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg text-center transition-colors">
-            Comenzar Quiz →
-        </a>
-    </div>
-</div>
-```
+## 📊 Estadísticas
 
-### Step 5: Create README (Optional)
-Add a `README.md` in your quiz folder documenting:
-- Topic covered
-- Difficulty level
-- Number of questions
-- Prerequisites
+- **Número de preguntas**: 22
+- **Puntos totales**: 220
+- **Tiempo estimado**: ~25-30 minutos
+- **Nivel**: Principiante a Avanzado
+- **Prerequisitos**: Conocimientos básicos de Python (variables, tipos de datos)
 
-## 📝 Question Format
+## 🎓 Objetivos de Aprendizaje
 
-Each question must have:
-- `question`: String (Markdown supported)
-- `code`: String (Python code snippet)
-- `options`: Array of 4 strings
-- `correct`: String (must match one option exactly)
-- `explanation`: String (Markdown supported)
+Al completar este quiz, serás capaz de:
 
-## 🎨 Customization
+1. **Crear y manipular** diccionarios con diferentes tipos de datos
+2. **Acceder** a valores usando claves de forma segura
+3. **Usar métodos** como `get()`, `update()`, `pop()`, `setdefault()`
+4. **Iterar** sobre claves, valores y pares clave-valor
+5. **Escribir dictionary comprehensions** eficientes
+6. **Trabajar con diccionarios anidados** y estructuras complejas
+7. **Entender** diferencias entre métodos que modifican vs. que crean nuevos diccionarios
+8. **Aplicar** operaciones modernas como el operador `|` para unión
 
-You can customize:
-- Title and description
-- Color scheme (update Tailwind classes)
-- Number of questions
-- Point values (default is 10 per question)
+## 💡 Consejos
 
-## ✅ Testing
+- Los diccionarios son fundamentales en Python - úsalos frecuentemente
+- Practica la diferencia entre `dict[key]` y `dict.get(key)`
+- Comprende cuándo usar comprehensions vs. loops tradicionales
+- Ten cuidado con referencias vs. copias de diccionarios
 
-1. Open `index.html` in a browser
-2. Test all questions
-3. Verify explanations display correctly
-4. Check code syntax highlighting
+## 🔗 Recursos Adicionales
 
-## 🚀 Deployment
+- [Documentación oficial de Python - Diccionarios](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
+- [Python Dictionary Methods](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict)
+- [Dictionary Comprehensions](https://peps.python.org/pep-0274/)
 
-Once your quiz is ready:
-1. Commit changes to git
-2. Push to GitHub
-3. GitHub Pages will automatically deploy
-4. Access at: `https://username.github.io/repo/quizzes/your-quiz-name/`
+## ✅ Validación
+
+Todas las preguntas han sido:
+- ✓ Probadas con código ejecutable
+- ✓ Validadas con el script `validation/validate_python_dictionaries.py`
+- ✓ Revisadas por exactitud de respuestas
+- ✓ Verificadas para valor educativo
 
 ---
 
-Good luck creating your quiz! 🎓
+¡Buena suerte! 🚀
+
