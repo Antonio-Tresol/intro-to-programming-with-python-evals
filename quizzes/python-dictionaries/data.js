@@ -1084,7 +1084,6 @@ correct = {k: [] for k in keys}  # Cada una tiene su propia lista
 **Importante**: Si el valor default es mutable (lista, dict), todas las claves compartirán la misma referencia.
 `
     },
-];
     {
         question: "**Iterar sobre diccionario**\n\n¿Cuál es el resultado de este loop?",
         code: `from typing import Dict
@@ -1208,6 +1207,601 @@ dict3 = {**dict1, **dict2}
 - **|=**: Cuando quieres actualizar el diccionario existente
 
 **Disponibilidad**: Ambos operadores están disponibles desde Python 3.9+
+`
+    },
+    {
+        question: "**Iterar con items() - método recomendado**\n\n¿Qué imprime este código?",
+        code: `from typing import Dict
+
+precios: Dict[str, float] = {
+    "manzana": 1.5,
+    "banana": 0.8,
+    "naranja": 1.2
+}
+
+for producto, precio in precios.items():
+    print(f"{producto}: \${precio}")`,
+        options: [
+            "manzana: $1.5\\nbanana: $0.8\\nnaranja: $1.2",
+            "1.5\\n0.8\\n1.2",
+            "manzana\\nbanana\\nnaranja",
+            "Error"
+        ],
+        correct: "manzana: $1.5\\nbanana: $0.8\\nnaranja: $1.2",
+        explanation: `**Respuesta correcta: manzana: $1.5\\nbanana: $0.8\\nnaranja: $1.2**
+
+El método **items()** es la forma más pythonic de iterar sobre diccionarios:
+
+**Sintaxis**: \`for clave, valor in diccionario.items()\`
+
+**Proceso**:
+\`\`\`python
+precios = {"manzana": 1.5, "banana": 0.8, "naranja": 1.2}
+
+for producto, precio in precios.items():
+    print(f"{producto}: \${precio}")
+
+# Iteración 1: producto="manzana", precio=1.5
+manzana: $1.5
+
+# Iteración 2: producto="banana", precio=0.8
+banana: $0.8
+
+# Iteración 3: producto="naranja", precio=1.2
+naranja: $1.2 ✓
+\`\`\`
+
+**Ventajas de items()**:
+- Acceso directo a clave Y valor
+- Código más limpio y legible
+- No necesitas usar \`diccionario[clave]\`
+
+**Comparación de métodos**:
+\`\`\`python
+# Método 1: items() - RECOMENDADO ✓
+for producto, precio in precios.items():
+    print(f"{producto}: {precio}")
+
+# Método 2: Solo claves (menos eficiente)
+for producto in precios:
+    precio = precios[producto]
+    print(f"{producto}: {precio}")
+
+# Método 3: keys() explícito
+for producto in precios.keys():
+    precio = precios[producto]
+    print(f"{producto}: {precio}")
+\`\`\`
+
+**Casos de uso comunes**:
+\`\`\`python
+# Filtrar por valor
+caros = {p: pr for p, pr in precios.items() if pr > 1.0}
+# {"manzana": 1.5, "naranja": 1.2}
+
+# Crear diccionario invertido
+invertido = {precio: producto for producto, precio in precios.items()}
+
+# Modificar valores
+for producto, precio in precios.items():
+    precios[producto] = precio * 1.1  # Aumentar 10%
+\`\`\`
+`
+    },
+    {
+        question: "**Iterar solo sobre claves con keys()**\n\n¿Cuál es la diferencia entre iterar con y sin keys()?",
+        code: `from typing import Dict
+
+usuarios: Dict[str, int] = {"ana": 25, "bob": 30, "carlos": 28}
+
+# Forma A
+for nombre in usuarios:
+    print(nombre)
+
+# Forma B
+for nombre in usuarios.keys():
+    print(nombre)`,
+        options: [
+            "Ambas formas producen el mismo resultado",
+            "A itera valores, B itera claves",
+            "A produce error, B funciona correctamente",
+            "A es más rápida que B"
+        ],
+        correct: "Ambas formas producen el mismo resultado",
+        explanation: `**Respuesta correcta: Ambas formas producen el mismo resultado**
+
+Ambas formas iteran sobre las **claves** del diccionario:
+
+**Demostración**:
+\`\`\`python
+usuarios = {"ana": 25, "bob": 30, "carlos": 28}
+
+# Forma A - Implícita (más común)
+for nombre in usuarios:
+    print(nombre)
+# ana
+# bob
+# carlos
+
+# Forma B - Explícita
+for nombre in usuarios.keys():
+    print(nombre)
+# ana
+# bob
+# carlos
+
+# ¡Ambas producen lo mismo! ✓
+\`\`\`
+
+**¿Cuándo usar cada una?**
+
+**Iterar directamente** (sin keys()):
+\`\`\`python
+# Más conciso y pythonic
+for clave in diccionario:
+    print(clave)
+\`\`\`
+
+**Usar keys() explícitamente**:
+\`\`\`python
+# 1. Cuando necesitas las claves como lista
+claves_lista = list(usuarios.keys())
+
+# 2. Para operaciones de conjuntos
+dict1 = {"a": 1, "b": 2}
+dict2 = {"b": 3, "c": 4}
+comunes = dict1.keys() & dict2.keys()  # {"b"}
+
+# 3. Para claridad en código complejo
+for usuario in usuarios.keys():  # Más explícito
+    if usuario in otros_usuarios.keys():
+        print(f"{usuario} está en ambos")
+\`\`\`
+
+**Otros métodos de iteración**:
+\`\`\`python
+# Solo valores
+for edad in usuarios.values():
+    print(edad)  # 25, 30, 28
+
+# Claves y valores
+for nombre, edad in usuarios.items():
+    print(f"{nombre}: {edad}")
+\`\`\`
+
+**Nota**: En Python 3, \`keys()\` retorna una vista (\`dict_keys\`), no una lista.
+`
+    },
+    {
+        question: "**Iterar solo sobre valores con values()**\n\n¿Qué resultado produce este código?",
+        code: `from typing import Dict, List
+
+notas: Dict[str, int] = {
+    "matematicas": 85,
+    "fisica": 90,
+    "quimica": 78
+}
+
+total: int = 0
+for nota in notas.values():
+    total += nota
+
+promedio = total / len(notas)`,
+        options: [
+            "promedio = 84.33...",
+            "promedio = 253",
+            "promedio = 85",
+            "Error"
+        ],
+        correct: "promedio = 84.33...",
+        explanation: `**Respuesta correcta: promedio = 84.33...**
+
+El método **values()** itera solo sobre los valores del diccionario:
+
+**Proceso**:
+\`\`\`python
+notas = {"matematicas": 85, "fisica": 90, "quimica": 78}
+
+total = 0
+for nota in notas.values():
+    total += nota
+
+# Iteración 1: nota = 85
+total = 0 + 85 = 85
+
+# Iteración 2: nota = 90
+total = 85 + 90 = 175
+
+# Iteración 3: nota = 78
+total = 175 + 78 = 253
+
+promedio = 253 / 3 = 84.333... ✓
+\`\`\`
+
+**Forma más concisa**:
+\`\`\`python
+# Usando sum()
+promedio = sum(notas.values()) / len(notas)  # 84.333...
+\`\`\`
+
+**Casos de uso de values()**:
+\`\`\`python
+# Encontrar máximo/mínimo
+nota_maxima = max(notas.values())  # 90
+nota_minima = min(notas.values())  # 78
+
+# Contar valores específicos
+precios = {"a": 10, "b": 20, "c": 10, "d": 30}
+count_10 = list(precios.values()).count(10)  # 2
+
+# Verificar si existe un valor
+if 90 in notas.values():
+    print("Hay una nota de 90")  # ✓
+
+# Convertir a lista
+todas_notas = list(notas.values())  # [85, 90, 78]
+\`\`\`
+
+**Con comprensiones**:
+\`\`\`python
+# Filtrar valores
+altas = [n for n in notas.values() if n >= 85]  # [85, 90]
+
+# Transformar valores
+ajustadas = [n + 5 for n in notas.values()]  # [90, 95, 83]
+
+# Estadísticas
+aprobadas = sum(1 for n in notas.values() if n >= 60)
+\`\`\`
+
+**Comparación**:
+\`\`\`python
+# values() - Solo valores
+for v in dict.values():
+    print(v)
+
+# items() - Claves y valores
+for k, v in dict.items():
+    print(k, v)
+
+# keys() - Solo claves
+for k in dict.keys():
+    print(k)
+\`\`\`
+`
+    },
+    {
+        question: "**Diccionarios anidados - Estructura de datos compleja**\n\n¿Qué valor retorna esta expresión?",
+        code: `from typing import Dict, Any
+
+empresa: Dict[str, Any] = {
+    "nombre": "TechCorp",
+    "empleados": {
+        "ingenieria": {
+            "senior": ["Ana", "Bob"],
+            "junior": ["Carlos"]
+        },
+        "ventas": {
+            "senior": ["Diana"],
+            "junior": ["Eva", "Frank"]
+        }
+    }
+}
+
+resultado = empresa["empleados"]["ingenieria"]["senior"][1]`,
+        options: [
+            "\"Bob\"",
+            "\"Ana\"",
+            "[\"Ana\", \"Bob\"]",
+            "Error"
+        ],
+        correct: "\"Bob\"",
+        explanation: `**Respuesta correcta: "Bob"**
+
+Los **diccionarios anidados** pueden tener múltiples niveles de profundidad:
+
+**Proceso de acceso**:
+\`\`\`python
+# Nivel 1: empresa["empleados"]
+{
+    "ingenieria": {...},
+    "ventas": {...}
+}
+
+# Nivel 2: ["ingenieria"]
+{
+    "senior": ["Ana", "Bob"],
+    "junior": ["Carlos"]
+}
+
+# Nivel 3: ["senior"]
+["Ana", "Bob"]
+
+# Nivel 4: [1]
+"Bob" ✓
+\`\`\`
+
+**Acceso seguro con get()**:
+\`\`\`python
+# Acceso directo (puede lanzar KeyError)
+bob = empresa["empleados"]["ingenieria"]["senior"][1]
+
+# Acceso seguro
+ingenieria = empresa.get("empleados", {}).get("ingenieria", {})
+seniors = ingenieria.get("senior", [])
+bob = seniors[1] if len(seniors) > 1 else None
+\`\`\`
+
+**Iterar sobre estructura anidada**:
+\`\`\`python
+# Iterar todos los empleados
+for depto, niveles in empresa["empleados"].items():
+    print(f"Departamento: {depto}")
+    for nivel, personas in niveles.items():
+        print(f"  {nivel}: {personas}")
+
+# Salida:
+# Departamento: ingenieria
+#   senior: ['Ana', 'Bob']
+#   junior: ['Carlos']
+# Departamento: ventas
+#   senior: ['Diana']
+#   junior: ['Eva', 'Frank']
+\`\`\`
+
+**Modificar valores anidados**:
+\`\`\`python
+# Agregar empleado
+empresa["empleados"]["ingenieria"]["senior"].append("Grace")
+
+# Cambiar estructura
+empresa["empleados"]["marketing"] = {
+    "senior": ["Henry"],
+    "junior": []
+}
+
+# Eliminar nivel
+del empresa["empleados"]["ventas"]["junior"]
+\`\`\`
+
+**Casos de uso reales**:
+\`\`\`python
+# Configuración de aplicación
+config = {
+    "database": {
+        "host": "localhost",
+        "credentials": {
+            "user": "admin",
+            "password": "secret"
+        }
+    },
+    "api": {
+        "version": "v1",
+        "endpoints": {
+            "users": "/api/v1/users",
+            "products": "/api/v1/products"
+        }
+    }
+}
+
+# Acceder a configuración
+db_user = config["database"]["credentials"]["user"]
+\`\`\`
+`
+    },
+    {
+        question: "**Lista de diccionarios - Patrón común**\n\n¿Qué imprime este código?",
+        code: `from typing import List, Dict
+
+estudiantes: List[Dict[str, Any]] = [
+    {"nombre": "Ana", "edad": 20, "nota": 85},
+    {"nombre": "Bob", "edad": 22, "nota": 92},
+    {"nombre": "Carlos", "edad": 21, "nota": 78}
+]
+
+for estudiante in estudiantes:
+    if estudiante["nota"] >= 80:
+        print(estudiante["nombre"])`,
+        options: [
+            "Ana\\nBob",
+            "Ana\\nBob\\nCarlos",
+            "85\\n92",
+            "Error"
+        ],
+        correct: "Ana\\nBob",
+        explanation: `**Respuesta correcta: Ana\\nBob**
+
+Las **listas de diccionarios** son un patrón muy común para representar colecciones de objetos:
+
+**Proceso**:
+\`\`\`python
+estudiantes = [
+    {"nombre": "Ana", "edad": 20, "nota": 85},
+    {"nombre": "Bob", "edad": 22, "nota": 92},
+    {"nombre": "Carlos", "edad": 21, "nota": 78}
+]
+
+for estudiante in estudiantes:
+    if estudiante["nota"] >= 80:
+        print(estudiante["nombre"])
+
+# Iteración 1: estudiante = {"nombre": "Ana", ...}
+85 >= 80 → True → print("Ana") ✓
+
+# Iteración 2: estudiante = {"nombre": "Bob", ...}
+92 >= 80 → True → print("Bob") ✓
+
+# Iteración 3: estudiante = {"nombre": "Carlos", ...}
+78 >= 80 → False (no imprime)
+
+Salida:
+Ana
+Bob ✓
+\`\`\`
+
+**Operaciones comunes**:
+\`\`\`python
+# Encontrar por nombre
+def buscar_estudiante(nombre: str) -> Dict:
+    for est in estudiantes:
+        if est["nombre"] == nombre:
+            return est
+    return None
+
+# Calcular promedio
+promedio = sum(e["nota"] for e in estudiantes) / len(estudiantes)
+# 85 (85+92+78)/3
+
+# Filtrar con list comprehension
+aprobados = [e for e in estudiantes if e["nota"] >= 60]
+
+# Ordenar por nota
+por_nota = sorted(estudiantes, key=lambda e: e["nota"], reverse=True)
+# [Bob(92), Ana(85), Carlos(78)]
+\`\`\`
+
+**Crear desde datos**:
+\`\`\`python
+# De listas separadas
+nombres = ["Ana", "Bob"]
+edades = [20, 22]
+estudiantes = [
+    {"nombre": n, "edad": e}
+    for n, e in zip(nombres, edades)
+]
+
+# De input de usuario
+estudiantes = []
+for i in range(3):
+    estudiantes.append({
+        "nombre": input("Nombre: "),
+        "nota": int(input("Nota: "))
+    })
+\`\`\`
+
+**Convertir a otros formatos**:
+\`\`\`python
+# A lista de valores
+nombres = [e["nombre"] for e in estudiantes]
+# ["Ana", "Bob", "Carlos"]
+
+# A diccionario con clave personalizada
+por_nombre = {e["nombre"]: e for e in estudiantes}
+# {"Ana": {...}, "Bob": {...}, "Carlos": {...}}
+
+# A JSON
+import json
+json_str = json.dumps(estudiantes)
+\`\`\`
+
+**Caso de uso real**: APIs REST, bases de datos, configuraciones
+`
+    },
+    {
+        question: "**Iterar diccionarios anidados con items()**\n\n¿Qué imprime este código?",
+        code: `from typing import Dict
+
+inventario: Dict[str, Dict[str, int]] = {
+    "frutas": {"manzanas": 10, "bananas": 15},
+    "verduras": {"zanahorias": 8, "lechugas": 5}
+}
+
+for categoria, productos in inventario.items():
+    print(f"{categoria}:")
+    for producto, cantidad in productos.items():
+        print(f"  {producto}: {cantidad}")`,
+        options: [
+            "frutas:\\n  manzanas: 10\\n  bananas: 15\\nverduras:\\n  zanahorias: 8\\n  lechugas: 5",
+            "manzanas: 10\\nbananas: 15\\nzanahorias: 8\\nlechugas: 5",
+            "frutas\\nverduras",
+            "Error"
+        ],
+        correct: "frutas:\\n  manzanas: 10\\n  bananas: 15\\nverduras:\\n  zanahorias: 8\\n  lechugas: 5",
+        explanation: `**Respuesta correcta: frutas: manzanas: 10, bananas: 15, verduras: zanahorias: 8, lechugas: 5**
+
+Para iterar **diccionarios anidados**, usamos **loops anidados** con \`items()\`:
+
+**Proceso detallado**:
+\`\`\`python
+inventario = {
+    "frutas": {"manzanas": 10, "bananas": 15},
+    "verduras": {"zanahorias": 8, "lechugas": 5}
+}
+
+# Loop externo: categorías
+for categoria, productos in inventario.items():
+    print(f"{categoria}:")
+    
+    # Loop interno: productos de cada categoría
+    for producto, cantidad in productos.items():
+        print(f"  {producto}: {cantidad}")
+
+# Iteración 1: categoria="frutas"
+frutas:
+  # productos = {"manzanas": 10, "bananas": 15}
+  # Iteración 1.1: producto="manzanas", cantidad=10
+  manzanas: 10
+  # Iteración 1.2: producto="bananas", cantidad=15
+  bananas: 15
+
+# Iteración 2: categoria="verduras"
+verduras:
+  # productos = {"zanahorias": 8, "lechugas": 5}
+  # Iteración 2.1: producto="zanahorias", cantidad=8
+  zanahorias: 8
+  # Iteración 2.2: producto="lechugas", cantidad=5
+  lechugas: 5 ✓
+\`\`\`
+
+**Casos de uso**:
+\`\`\`python
+# Calcular totales por categoría
+for categoria, productos in inventario.items():
+    total = sum(productos.values())
+    print(f"{categoria}: {total} unidades")
+# frutas: 25 unidades
+# verduras: 13 unidades
+
+# Buscar producto específico
+def buscar_producto(nombre: str) -> tuple:
+    for cat, prods in inventario.items():
+        if nombre in prods:
+            return (cat, prods[nombre])
+    return None
+
+buscar_producto("manzanas")  # ("frutas", 10)
+
+# Actualizar cantidades
+for categoria, productos in inventario.items():
+    for producto in productos:
+        productos[producto] += 5  # Agregar 5 a cada producto
+\`\`\`
+
+**Crear estructura desde datos**:
+\`\`\`python
+# Agrupar lista por categoría
+items = [
+    ("frutas", "manzanas", 10),
+    ("frutas", "bananas", 15),
+    ("verduras", "zanahorias", 8)
+]
+
+inventario = {}
+for cat, prod, cant in items:
+    if cat not in inventario:
+        inventario[cat] = {}
+    inventario[cat][prod] = cant
+\`\`\`
+
+**Con comprehension anidada**:
+\`\`\`python
+# Filtrar productos con stock bajo
+bajo_stock = {
+    cat: {p: c for p, c in prods.items() if c < 10}
+    for cat, prods in inventario.items()
+}
+# {"verduras": {"zanahorias": 8, "lechugas": 5}}
+\`\`\`
 `
     }
 ];

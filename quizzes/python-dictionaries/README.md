@@ -27,18 +27,24 @@ Este quiz cubre todos los aspectos de los diccionarios en Python, desde la creac
 - ✅ Operador `|` - Unión de diccionarios (Python 3.9+)
 - ✅ Método `fromkeys()` - Crear con claves
 
-### Nivel Avanzado (Preguntas 16-22)
+### Nivel Avanzado (Preguntas 16-28)
 - ✅ Dictionary comprehensions básicas
 - ✅ Comprehensions con filtro
 - ✅ Comprehensions con transformación
 - ✅ Diccionarios anidados - Acceso multi-nivel
 - ✅ Diccionarios anidados - Iteración compleja
+- ✅ **Iteración con items() - método recomendado**
+- ✅ **Iteración con keys() - solo claves**
+- ✅ **Iteración con values() - solo valores**
+- ✅ **Diccionarios anidados - estructuras complejas**
+- ✅ **Lista de diccionarios - patrón común**
+- ✅ **Iteración de diccionarios anidados con items()**
 
 ## 📊 Estadísticas
 
-- **Número de preguntas**: 22
-- **Puntos totales**: 220
-- **Tiempo estimado**: ~25-30 minutos
+- **Número de preguntas**: 28
+- **Puntos totales**: 280
+- **Tiempo estimado**: ~30-35 minutos
 - **Nivel**: Principiante a Avanzado
 - **Prerequisitos**: Conocimientos básicos de Python (variables, tipos de datos)
 

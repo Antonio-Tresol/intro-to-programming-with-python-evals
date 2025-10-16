@@ -1200,5 +1200,387 @@ numeros_validos = [x for x in numeros if x not in excluidos]
 **Complejidad**: O(n) - recorre la lista linealmente
 Para búsquedas frecuentes, considera usar un \`set\` (O(1)).
 `
+    },
+    {
+        question: "**Iteración tradicional con for**\n\n¿Qué imprime este código?",
+        code: `from typing import List
+
+frutas: List[str] = ["manzana", "banana", "naranja"]
+for fruta in frutas:
+    print(fruta.upper())`,
+        options: [
+            "MANZANA\\nBANANA\\nNARANJA",
+            "manzana\\nbanana\\nnaranja",
+            "['MANZANA', 'BANANA', 'NARANJA']",
+            "Error"
+        ],
+        correct: "MANZANA\\nBANANA\\nNARANJA",
+        explanation: `**Respuesta correcta: MANZANA\\nBANANA\\nNARANJA**
+
+La **iteración tradicional** con \`for\` recorre cada elemento de la lista:
+
+**Proceso**:
+\`\`\`python
+frutas = ["manzana", "banana", "naranja"]
+
+for fruta in frutas:
+    print(fruta.upper())
+
+# Iteración 1: fruta = "manzana"
+print("manzana".upper())  # MANZANA
+
+# Iteración 2: fruta = "banana"
+print("banana".upper())  # BANANA
+
+# Iteración 3: fruta = "naranja"
+print("naranja".upper())  # NARANJA
+
+Salida:
+MANZANA
+BANANA
+NARANJA ✓
+\`\`\`
+
+**Ventajas de la iteración directa**:
+- Código limpio y legible
+- No necesitas manejar índices
+- Pythonic (estilo recomendado)
+
+**Más ejemplos**:
+\`\`\`python
+# Sumar elementos
+total = 0
+for numero in [1, 2, 3, 4, 5]:
+    total += numero  # total = 15
+
+# Filtrar mientras iteras
+positivos: List[int] = []
+for num in [-2, -1, 0, 1, 2]:
+    if num > 0:
+        positivos.append(num)  # [1, 2]
+
+# Procesar strings
+for palabra in ["hola", "mundo"]:
+    print(len(palabra))  # 4, 5
+\`\`\`
+`
+    },
+    {
+        question: "**Iteración con índices usando enumerate()**\n\n¿Qué resultado produce este código?",
+        code: `from typing import List
+
+colores: List[str] = ["rojo", "verde", "azul"]
+for indice, color in enumerate(colores):
+    print(f"{indice}: {color}")`,
+        options: [
+            "0: rojo\\n1: verde\\n2: azul",
+            "1: rojo\\n2: verde\\n3: azul",
+            "rojo\\nverde\\nazul",
+            "Error"
+        ],
+        correct: "0: rojo\\n1: verde\\n2: azul",
+        explanation: `**Respuesta correcta: 0: rojo\\n1: verde\\n2: azul**
+
+La función **enumerate()** proporciona tanto el índice como el valor:
+
+**Sintaxis**: \`for indice, valor in enumerate(lista)\`
+
+**Proceso**:
+\`\`\`python
+colores = ["rojo", "verde", "azul"]
+
+for indice, color in enumerate(colores):
+    print(f"{indice}: {color}")
+
+# Iteración 1: indice=0, color="rojo"
+0: rojo
+
+# Iteración 2: indice=1, color="verde"
+1: verde
+
+# Iteración 3: indice=2, color="azul"
+2: azul ✓
+\`\`\`
+
+**Con inicio personalizado**:
+\`\`\`python
+# Empezar desde 1 en vez de 0
+for i, color in enumerate(colores, start=1):
+    print(f"{i}: {color}")
+# 1: rojo
+# 2: verde
+# 3: azul
+\`\`\`
+
+**Casos de uso comunes**:
+\`\`\`python
+# Modificar elementos con índice
+numeros: List[int] = [10, 20, 30]
+for i, num in enumerate(numeros):
+    numeros[i] = num * 2  # [20, 40, 60]
+
+# Encontrar posición de elemento
+palabras = ["python", "java", "c++"]
+for i, palabra in enumerate(palabras):
+    if palabra == "java":
+        print(f"Encontrado en posición {i}")  # 1
+
+# Crear diccionario de posiciones
+posiciones = {palabra: i for i, palabra in enumerate(palabras)}
+# {"python": 0, "java": 1, "c++": 2}
+\`\`\`
+
+**vs. range(len())**:
+\`\`\`python
+# ❌ Menos pythonic
+for i in range(len(colores)):
+    print(f"{i}: {colores[i]}")
+
+# ✓ Más pythonic
+for i, color in enumerate(colores):
+    print(f"{i}: {color}")
+\`\`\`
+`
+    },
+    {
+        question: "**Iteración sobre listas anidadas**\n\n¿Qué imprime este código?",
+        code: `from typing import List
+
+matriz: List[List[int]] = [
+    [1, 2],
+    [3, 4],
+    [5, 6]
+]
+
+for fila in matriz:
+    for elemento in fila:
+        print(elemento, end=" ")`,
+        options: [
+            "1 2 3 4 5 6",
+            "[1, 2] [3, 4] [5, 6]",
+            "1\\n2\\n3\\n4\\n5\\n6",
+            "Error"
+        ],
+        correct: "1 2 3 4 5 6",
+        explanation: `**Respuesta correcta: 1 2 3 4 5 6**
+
+Para iterar sobre **listas anidadas**, usamos loops anidados:
+
+**Proceso**:
+\`\`\`python
+matriz = [
+    [1, 2],
+    [3, 4],
+    [5, 6]
+]
+
+# Loop externo: itera sobre filas
+for fila in matriz:
+    # Loop interno: itera sobre elementos de cada fila
+    for elemento in fila:
+        print(elemento, end=" ")
+
+# Iteración detallada:
+fila = [1, 2]:
+    elemento = 1 → print(1, end=" ")
+    elemento = 2 → print(2, end=" ")
+    
+fila = [3, 4]:
+    elemento = 3 → print(3, end=" ")
+    elemento = 4 → print(4, end=" ")
+    
+fila = [5, 6]:
+    elemento = 5 → print(5, end=" ")
+    elemento = 6 → print(6, end=" ")
+
+Salida: 1 2 3 4 5 6 ✓
+\`\`\`
+
+**Con índices**:
+\`\`\`python
+# Iterar con posición de fila y columna
+for i, fila in enumerate(matriz):
+    for j, elemento in enumerate(fila):
+        print(f"[{i}][{j}] = {elemento}")
+# [0][0] = 1
+# [0][1] = 2
+# [1][0] = 3
+# ...
+\`\`\`
+
+**Procesar por filas**:
+\`\`\`python
+# Sumar cada fila
+for fila in matriz:
+    suma = sum(fila)
+    print(suma)
+# 3 (1+2)
+# 7 (3+4)
+# 11 (5+6)
+\`\`\`
+
+**Buscar en matriz**:
+\`\`\`python
+# Encontrar un valor
+buscado = 4
+for i, fila in enumerate(matriz):
+    for j, elemento in enumerate(fila):
+        if elemento == buscado:
+            print(f"Encontrado en [{i}][{j}]")
+# Encontrado en [1][1]
+\`\`\`
+`
+    },
+    {
+        question: "**Función sum() con listas**\n\n¿Qué valor retorna esta expresión?",
+        code: `from typing import List
+
+numeros: List[int] = [10, 20, 30, 40, 50]
+resultado = sum(numeros)`,
+        options: [
+            "150",
+            "50",
+            "[10, 20, 30, 40, 50]",
+            "Error"
+        ],
+        correct: "150",
+        explanation: `**Respuesta correcta: 150**
+
+La función **sum()** calcula la suma de todos los elementos:
+
+**Proceso**:
+\`\`\`python
+numeros = [10, 20, 30, 40, 50]
+resultado = sum(numeros)
+
+# Suma: 10 + 20 + 30 + 40 + 50 = 150 ✓
+\`\`\`
+
+**Con valor inicial**:
+\`\`\`python
+# sum(lista, inicio)
+sum([1, 2, 3], 10)  # 16 (10 + 1 + 2 + 3)
+sum([5, 5, 5], 0)   # 15 (0 + 5 + 5 + 5)
+\`\`\`
+
+**Casos de uso**:
+\`\`\`python
+# Calcular promedio
+numeros = [10, 20, 30, 40, 50]
+promedio = sum(numeros) / len(numeros)  # 30.0
+
+# Sumar valores filtrados
+pares = [x for x in numeros if x % 2 == 0]
+suma_pares = sum(pares)  # 150 (10+20+30+40+50)
+
+# Contar True en lista de booleanos
+resultados = [True, False, True, True]
+count = sum(resultados)  # 3 (True=1, False=0)
+\`\`\`
+
+**Con listas anidadas**:
+\`\`\`python
+# Suma total de matriz
+matriz = [[1, 2], [3, 4], [5, 6]]
+total = sum(sum(fila) for fila in matriz)  # 21
+
+# O más directo con aplanamiento
+from itertools import chain
+total = sum(chain.from_iterable(matriz))  # 21
+\`\`\`
+
+**Alternativas**:
+\`\`\`python
+# Suma manual con loop
+total = 0
+for num in numeros:
+    total += num
+
+# Con reduce (funcional)
+from functools import reduce
+total = reduce(lambda a, b: a + b, numeros)
+\`\`\`
+`
+    },
+    {
+        question: "**Funciones max() y min()**\n\n¿Qué valores retornan estas funciones?",
+        code: `from typing import List
+
+temperaturas: List[float] = [18.5, 22.0, 15.3, 25.8, 19.2]
+maxima = max(temperaturas)
+minima = min(temperaturas)`,
+        options: [
+            "maxima = 25.8, minima = 15.3",
+            "maxima = 19.2, minima = 18.5",
+            "maxima = 22.0, minima = 15.3",
+            "Error"
+        ],
+        correct: "maxima = 25.8, minima = 15.3",
+        explanation: `**Respuesta correcta: maxima = 25.8, minima = 15.3**
+
+Las funciones **max()** y **min()** encuentran el valor máximo y mínimo:
+
+**Proceso**:
+\`\`\`python
+temperaturas = [18.5, 22.0, 15.3, 25.8, 19.2]
+
+max(temperaturas)  # 25.8 ✓ (valor mayor)
+min(temperaturas)  # 15.3 ✓ (valor menor)
+\`\`\`
+
+**Con strings**:
+\`\`\`python
+palabras = ["python", "java", "c++", "ruby"]
+max(palabras)  # "ruby" (orden alfabético)
+min(palabras)  # "c++"
+
+# Por longitud
+max(palabras, key=len)  # "python" (6 caracteres)
+min(palabras, key=len)  # "c++" (3 caracteres)
+\`\`\`
+
+**Con listas de tuplas**:
+\`\`\`python
+estudiantes = [("Ana", 85), ("Bob", 92), ("Carlos", 78)]
+
+# Por nota (segundo elemento)
+mejor = max(estudiantes, key=lambda x: x[1])
+# ("Bob", 92)
+
+peor = min(estudiantes, key=lambda x: x[1])
+# ("Carlos", 78)
+\`\`\`
+
+**Casos especiales**:
+\`\`\`python
+# Lista vacía lanza ValueError
+max([])  # ValueError: max() arg is an empty sequence
+
+# Solución con default (Python 3.4+)
+max([], default=0)  # 0
+min([], default=float('inf'))  # inf
+\`\`\`
+
+**Uso práctico**:
+\`\`\`python
+# Encontrar rango
+numeros = [10, 5, 20, 15, 8]
+rango = max(numeros) - min(numeros)  # 15 (20 - 5)
+
+# Normalizar valores
+minimo = min(numeros)
+maximo = max(numeros)
+normalizados = [(x - minimo) / (maximo - minimo) for x in numeros]
+# [0.33, 0.0, 1.0, 0.67, 0.2]
+
+# Limitar valores (clamp)
+def clamp(valor: float, minimo: float, maximo: float) -> float:
+    return max(minimo, min(valor, maximo))
+
+clamp(15, 0, 10)  # 10
+clamp(-5, 0, 10)  # 0
+clamp(7, 0, 10)   # 7
+\`\`\`
+`
     }
 ];

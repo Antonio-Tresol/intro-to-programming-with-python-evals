@@ -27,7 +27,7 @@ Este quiz cubre todos los aspectos de las listas en Python, desde la creación b
 - ✅ Slicing con índices negativos
 - ✅ Modificar sublistas con slicing
 
-### Nivel Avanzado (Preguntas 16-24)
+### Nivel Avanzado (Preguntas 16-29)
 - ✅ List comprehensions básicas
 - ✅ List comprehensions con filtro
 - ✅ Comprehensions con transformación y filtro
@@ -37,12 +37,17 @@ Este quiz cubre todos los aspectos de las listas en Python, desde la creación b
 - ✅ Concatenación con operador `+`
 - ✅ Comprehensions con condicional ternario
 - ✅ Operador `in` - Membresía
+- ✅ **Iteración tradicional con for**
+- ✅ **Iteración con enumerate() - índices y valores**
+- ✅ **Iteración sobre listas anidadas**
+- ✅ **Función sum() - sumar elementos**
+- ✅ **Funciones max() y min() - encontrar extremos**
 
 ## 📊 Estadísticas
 
-- **Número de preguntas**: 24
-- **Puntos totales**: 240
-- **Tiempo estimado**: ~30-35 minutos
+- **Número de preguntas**: 29
+- **Puntos totales**: 290
+- **Tiempo estimado**: ~35-40 minutos
 - **Nivel**: Principiante a Avanzado
 - **Prerequisitos**: Conocimientos básicos de Python (variables, tipos de datos)
 

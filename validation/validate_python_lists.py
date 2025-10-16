@@ -244,3 +244,145 @@ def main():
 
 if __name__ == "__main__":
     exit(main())
+
+
+def test_question_25():
+    """Test Question 25: Traditional iteration with for."""
+    print("Testing Question 25: Traditional iteration...")
+    
+    from typing import List
+    
+    frutas: List[str] = ["manzana", "banana", "naranja"]
+    result = []
+    for fruta in frutas:
+        result.append(fruta.upper())
+    
+    expected = ["MANZANA", "BANANA", "NARANJA"]
+    assert result == expected
+    
+    print(f"  ✓ Traditional iteration: {result}")
+
+
+def test_question_26():
+    """Test Question 26: Iteration with enumerate()."""
+    print("Testing Question 26: Iteration with enumerate()...")
+    
+    from typing import List
+    
+    colores: List[str] = ["rojo", "verde", "azul"]
+    result = []
+    for indice, color in enumerate(colores):
+        result.append(f"{indice}: {color}")
+    
+    expected = ["0: rojo", "1: verde", "2: azul"]
+    assert result == expected
+    
+    print(f"  ✓ enumerate() result: {result}")
+
+
+def test_question_27():
+    """Test Question 27: Nested list iteration."""
+    print("Testing Question 27: Nested list iteration...")
+    
+    from typing import List
+    
+    matriz: List[List[int]] = [
+        [1, 2],
+        [3, 4],
+        [5, 6]
+    ]
+    
+    result = []
+    for fila in matriz:
+        for elemento in fila:
+            result.append(elemento)
+    
+    expected = [1, 2, 3, 4, 5, 6]
+    assert result == expected
+    
+    print(f"  ✓ Flattened result: {result}")
+
+
+def test_question_28():
+    """Test Question 28: sum() function."""
+    print("Testing Question 28: sum() function...")
+    
+    from typing import List
+    
+    numeros: List[int] = [10, 20, 30, 40, 50]
+    resultado = sum(numeros)
+    
+    assert resultado == 150
+    
+    print(f"  ✓ sum(numeros) = {resultado}")
+
+
+def test_question_29():
+    """Test Question 29: max() and min() functions."""
+    print("Testing Question 29: max() and min() functions...")
+    
+    from typing import List
+    
+    temperaturas: List[float] = [18.5, 22.0, 15.3, 25.8, 19.2]
+    maxima = max(temperaturas)
+    minima = min(temperaturas)
+    
+    assert maxima == 25.8
+    assert minima == 15.3
+    
+    print(f"  ✓ max = {maxima}, min = {minima}")
+
+
+# Update main to include new tests
+if __name__ == "__main__":
+    import sys
+    
+    # Get the original main function
+    original_tests = [
+        test_question_1,
+        test_question_2,
+        test_question_3,
+        test_question_6,
+        test_question_7,
+        test_question_11,
+        test_question_12,
+        test_question_16,
+        test_question_17,
+        test_question_19,
+        test_question_20,
+        test_question_21,
+        test_question_22,
+        test_question_25,
+        test_question_26,
+        test_question_27,
+        test_question_28,
+        test_question_29,
+    ]
+    
+    print("=" * 60)
+    print("VALIDATING PYTHON LISTS QUIZ (Updated)")
+    print("=" * 60)
+    
+    passed = 0
+    failed = 0
+    
+    for test in original_tests:
+        try:
+            test()
+            passed += 1
+            print()
+        except AssertionError as e:
+            failed += 1
+            print(f"  ✗ FAILED: {e}")
+            print()
+    
+    print("=" * 60)
+    print(f"RESULTS: {passed} passed, {failed} failed")
+    print("=" * 60)
+    
+    if failed == 0:
+        print("✅ All tests passed!")
+        sys.exit(0)
+    else:
+        print("❌ Some tests failed")
+        sys.exit(1)
