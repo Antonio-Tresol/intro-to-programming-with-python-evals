@@ -1085,3 +1085,129 @@ correct = {k: [] for k in keys}  # Cada una tiene su propia lista
 `
     },
 ];
+    {
+        question: "**Iterar sobre diccionario**\n\n¿Cuál es el resultado de este loop?",
+        code: `from typing import Dict
+
+datos: Dict[str, int] = {"x": 10, "y": 20, "z": 30}
+resultado: int = 0
+
+for clave in datos:
+    resultado += datos[clave]`,
+        options: [
+            "60",
+            "0",
+            "Error: no se puede iterar sobre dict",
+            "xyz"
+        ],
+        correct: "60",
+        explanation: `**Respuesta correcta: 60**
+
+Cuando iteras sobre un diccionario **sin métodos**, iteras sobre sus **claves**:
+
+**Proceso**:
+\`\`\`python
+datos = {"x": 10, "y": 20, "z": 30}
+resultado = 0
+
+# Itera sobre claves: "x", "y", "z"
+for clave in datos:
+    # Accede al valor usando la clave
+    resultado += datos[clave]
+
+clave = "x" → resultado += 10 → resultado = 10
+clave = "y" → resultado += 20 → resultado = 30
+clave = "z" → resultado += 30 → resultado = 60 ✓
+\`\`\`
+
+**Formas de iterar**:
+\`\`\`python
+# 1. Sobre claves (default)
+for clave in datos:
+    print(clave, datos[clave])
+
+# 2. Sobre claves explícito
+for clave in datos.keys():
+    print(clave)
+
+# 3. Sobre valores
+for valor in datos.values():
+    print(valor)
+
+# 4. Sobre pares clave-valor (más común)
+for clave, valor in datos.items():
+    print(f"{clave}: {valor}")
+\`\`\`
+
+**Ventaja de items()**:
+\`\`\`python
+# Más limpio y eficiente
+for clave, valor in datos.items():
+    resultado += valor  # No necesitas datos[clave]
+\`\`\`
+`
+    },
+    {
+        question: "**Método del operador | en Python 3.9+**\n\n¿Qué diferencia hay entre | y |= con diccionarios?",
+        code: `from typing import Dict
+
+# Ejemplo A
+dict1: Dict[str, int] = {"a": 1, "b": 2}
+dict2: Dict[str, int] = {"b": 3, "c": 4}
+dict3 = dict1 | dict2
+
+# Ejemplo B
+dict4: Dict[str, int] = {"a": 1, "b": 2}
+dict5: Dict[str, int] = {"b": 3, "c": 4}
+dict4 |= dict5`,
+        options: [
+            "| crea nuevo dict, |= modifica dict4",
+            "Ambos crean nuevos diccionarios",
+            "Ambos modifican el diccionario original",
+            "| modifica, |= crea nuevo"
+        ],
+        correct: "| crea nuevo dict, |= modifica dict4",
+        explanation: `**Respuesta correcta: | crea nuevo dict, |= modifica dict4**
+
+**Operador | (unión, crea nuevo)**:
+\`\`\`python
+dict1 = {"a": 1, "b": 2}
+dict2 = {"b": 3, "c": 4}
+dict3 = dict1 | dict2
+
+# dict3 = {"a": 1, "b": 3, "c": 4} (nuevo dict)
+# dict1 = {"a": 1, "b": 2} (sin cambios)
+# dict2 = {"b": 3, "c": 4} (sin cambios)
+\`\`\`
+
+**Operador |= (actualización in-place)**:
+\`\`\`python
+dict4 = {"a": 1, "b": 2}
+dict5 = {"b": 3, "c": 4}
+dict4 |= dict5
+
+# dict4 = {"a": 1, "b": 3, "c": 4} (modificado)
+# dict5 = {"b": 3, "c": 4} (sin cambios)
+# Equivalente a: dict4.update(dict5)
+\`\`\`
+
+**Comparación con update()**:
+\`\`\`python
+# |= es equivalente a update()
+dict1 |= dict2  # Modifica dict1
+dict1.update(dict2)  # Mismo efecto
+
+# | no tiene equivalente directo con métodos
+dict3 = dict1 | dict2
+# Similar a (pero más eficiente que):
+dict3 = {**dict1, **dict2}
+\`\`\`
+
+**Cuándo usar cada uno**:
+- **|**: Cuando necesitas mantener los originales intactos
+- **|=**: Cuando quieres actualizar el diccionario existente
+
+**Disponibilidad**: Ambos operadores están disponibles desde Python 3.9+
+`
+    }
+];
