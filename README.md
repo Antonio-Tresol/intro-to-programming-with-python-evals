@@ -4,7 +4,7 @@ Interactive Python quiz platform for learning programming concepts through hands
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://antonio-tresol.github.io/intro-to-programming-with-python-evals/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Quizzes](https://img.shields.io/badge/Quizzes-4-orange.svg)](#available-quizzes)
+[![Quizzes](https://img.shields.io/badge/Quizzes-5-orange.svg)](#available-quizzes)
 
 ## 🎯 Overview
 
