@@ -157,7 +157,9 @@ const QuizApp = {
             button.dataset.optionValue = option; 
             
             // UNIFIED RENDERING: Treat all options as code blocks for visual consistency.
-            const escapedCode = option.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            // Convert \n to actual newlines for proper display
+            const normalizedOption = option.replace(/\\n/g, '\n');
+            const escapedCode = normalizedOption.replace(/</g, "&lt;").replace(/>/g, "&gt;");
             button.innerHTML = `<pre><code class="language-python">${escapedCode}</code></pre>`;
             hljs.highlightElement(button.querySelector('code'));
             
