@@ -277,3 +277,66 @@ body {
         transform: translateX(10px);
     }
 }
+
+/* Home button - fixed position */
+.home-btn {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 50;
+    background-color: #4285F4;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.2s;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.home-btn:hover {
+    background-color: #1967d2;
+    transform: scale(1.05);
+}
+
+/* Review screen styles */
+.review-item {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left-width: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-correct {
+    border-color: #0F9D58;
+    background-color: rgba(15, 157, 88, 0.05);
+}
+
+.review-incorrect {
+    border-color: #DB4437;
+    background-color: rgba(219, 68, 55, 0.05);
+}
+
+.review-header {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+}
+
+.review-item code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9em;
+}
+
+.review-item .code-block {
+    background-color: #282c34;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.review-item strong {
+    font-weight: 700;
+    color: #111827;
+}
