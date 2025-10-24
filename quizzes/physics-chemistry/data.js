@@ -3,7 +3,9 @@
  * @description Question data for physics and chemistry exercises
  */
 
-const physicsChemistryQuizData = [
+const physicsChemistryQuizData = {
+    randomize: true,// Assessment mode: broad understanding
+    questions: [
     {
         question: "Una simulación física calcula qué partículas estarán dentro de una zona después de 2.0 segundos. ¿Qué lista de IDs retornará?",
         code: `from typing import List, Dict, Any, Tuple
@@ -276,4 +278,6 @@ La función procesa la fórmula 'C2H5X' carácter por carácter:
 El valor de retorno es **0.0**, indicando que hay un elemento desconocido en la fórmula.
 `
     }
-];
+
+    ]
+}

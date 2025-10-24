@@ -3,27 +3,29 @@
  * @description Question data for "From Zero to Data Structures" quiz
  */
 
-const dataStructuresQuizData = [
-    {
-        question: "¿Cuál será el valor de retorno al llamarla con `funcion_uno(5, 3)`?",
-        code: `from typing import Union
+const dataStructuresQuizData = {
+    randomize: false,  // Educational progression: basic to complex
+    questions: [
+        {
+            question: "¿Cuál será el valor de retorno al llamarla con `funcion_uno(5, 3)`?",
+            code: `from typing import Union
 
 def funcion_uno(a: int, b: int) -> bool:
     x: int = a + b * 2
     y: bool = (x % 5) > 2
     z: bool = not y and (a > b)
     return z`,
-        options: ["False", "True", "11", "Error de sintaxis"],
-        correct: "True",
-        explanation: `
+            options: ["False", "True", "11", "Error de sintaxis"],
+            correct: "True",
+            explanation: `
 * **Paso 1: Calcular \`x\`**: Por [precedencia de operadores](https://www.w3schools.com/python/python_operators.asp), \`3 * 2\` se evalúa primero (6). Luego \`5 + 6 = 11\`. Así que \`x\` es \`11\`.
 * **Paso 2: Calcular \`y\`**: La expresión es \`(11 % 5) > 2\`. El módulo \`11 % 5\` es \`1\`. La comparación \`1 > 2\` es **False**. Así que \`y\` es \`False\`.
 * **Paso 3: Calcular \`z\`**: La expresión es \`not y and (a > b)\`. Esto se convierte en \`not False and (5 > 3)\`, que es \`True and True\`. El resultado final es **True**.
 `
-    },
-    {
-        question: "¿Cuál es la salida de la siguiente función si se invoca con `funcion_dos([1, 2, 3, 4, 5])`?",
-        code: `from typing import List
+        },
+        {
+            question: "¿Cuál es la salida de la siguiente función si se invoca con `funcion_dos([1, 2, 3, 4, 5])`?",
+            code: `from typing import List
 
 def funcion_dos(numeros: List[int]) -> List[int]:
     resultado: List[int] = []
@@ -394,5 +396,6 @@ El cálculo se realiza en dos fases:
 
 La función retorna la parte entera, que es **135**.
 `
-    }
-];
+        }
+    ]
+}

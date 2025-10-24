@@ -11,7 +11,9 @@
  * - Advanced operations (Questions 21-24)
  */
 
-const pythonListsQuizData = [
+const pythonListsQuizData = {
+    randomize: false,// Educational progression: basics to advanced
+    questions: [
     // EASY LEVEL - Basic List Creation and Indexing (Questions 1-5)
     {
         question: "**Creación básica de lista**\n\n¿Cuál es la forma correcta de crear una lista vacía en Python?",
@@ -1583,4 +1585,6 @@ clamp(7, 0, 10)   # 7
 \`\`\`
 `
     }
-];
+
+    ]
+}

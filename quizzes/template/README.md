@@ -12,18 +12,24 @@ cd quizzes/your-quiz-name
 
 ### Step 2: Edit `data.js`
 1. Rename the variable from `templateQuizData` to your quiz name (e.g., `algorithmsQuizData`)
-2. Add your questions following this structure:
+2. Set the `randomize` flag:
+   - `false` for educational progression (questions build sequentially)
+   - `true` for assessment mode (questions appear in random order)
+3. Add your questions following this structure:
 
 ```javascript
-const yourQuizNameData = [
-    {
-        question: "Your question?",
-        code: `# Python code here`,
-        options: ["A", "B", "C", "D"],
-        correct: "C",
-        explanation: "Why C is correct..."
-    }
-];
+const yourQuizNameData = {
+    randomize: false,  // Set based on quiz purpose
+    questions: [
+        {
+            question: "Your question?",
+            code: `# Python code here`,
+            options: ["A", "B", "C", "D"],
+            correct: "C",
+            explanation: "Why C is correct..."
+        }
+    ]
+};
 ```
 
 ### Step 3: Edit `index.html`

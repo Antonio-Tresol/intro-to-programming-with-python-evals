@@ -13,11 +13,13 @@
  * - Common patterns and best practices (Questions 24-25)
  */
 
-const numpyFundamentalsQuizData = [
-    // EASY LEVEL - Array Creation (Questions 1-5)
-    {
-        question: "**Creación básica de arrays**\n\n¿Cuál es la forma correcta de crear un array NumPy a partir de una lista?",
-        code: `import numpy as np
+const numpyFundamentalsQuizData = {
+    randomize: false,  // Educational progression: zero to hero
+    questions: [
+        // EASY LEVEL - Array Creation (Questions 1-5)
+        {
+            question: "**Creación básica de arrays**\n\n¿Cuál es la forma correcta de crear un array NumPy a partir de una lista?",
+            code: `import numpy as np
 from typing import Any
 
 # ¿Cuál de estas opciones crea un array NumPy correctamente?
@@ -998,5 +1000,6 @@ b[0] = 77
 sub = arr[1:3]  # vista, no copia
 \`\`\`
 `
-    }
-];
+        }
+    ]
+}

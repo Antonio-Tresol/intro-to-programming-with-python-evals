@@ -1,4 +1,6 @@
-const helperFunctionsQuizData = [
+const helperFunctionsQuizData = {
+    randomize: true,// Pattern application at various levels
+    questions: [
     {
         question: "**Procesamiento por lotes con función auxiliar**\n\nEstás desarrollando un sistema de registro de usuarios y necesitas validar múltiples registros de forma eficiente. Has escrito una función auxiliar `es_usuario_valido` que valida un único usuario, y ahora necesitas usarla en una función `procesar_lote_usuarios` que clasifique múltiples usuarios.\n\n¿Cuál será el valor de `resultado`?",
         code: `def es_usuario_valido(usuario: Dict[str, Any]) -> bool:
@@ -387,5 +389,6 @@ Al finalizar el bucle, la función retorna el valor final de \`contador\`, que e
 - **Función genérica**: \`contar_si_cumple\` funciona con cualquier predicado
 - **Predicado como parámetro**: Permite personalizar el comportamiento sin modificar la función
 - **Reutilización**: El mismo código puede contar pares, impares, negativos, etc.`
-    }
-]
+        }
+    ]
+}

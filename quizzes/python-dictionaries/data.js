@@ -3,7 +3,9 @@
  * @description Comprehensive quiz covering Python dictionaries from basics to advanced topics
  */
 
-const pythonDictionariesQuizData = [
+const pythonDictionariesQuizData = {
+    randomize: false,// Educational progression
+    questions: [
     {
         question: "**Creación básica de diccionario**\n\n¿Cuál es la forma correcta de crear un diccionario vacío en Python?",
         code: `from typing import Dict
@@ -1804,4 +1806,6 @@ bajo_stock = {
 \`\`\`
 `
     }
-];
+
+    ]
+}

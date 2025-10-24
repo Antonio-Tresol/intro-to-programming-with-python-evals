@@ -16,8 +16,10 @@
  * - Functions as first-class objects
  */
 
-const pythonFunctionsQuizData = [
-    // LEVEL 1: ABSOLUTE BEGINNER - Basic Function Structure (Questions 1-4)
+const pythonFunctionsQuizData = {
+    randomize: false,  // Educational progression
+    questions: [
+        // LEVEL 1: ABSOLUTE BEGINNER - Basic Function Structure (Questions 1-4)
     {
         question: "**¿Qué palabra clave se usa para definir una función en Python?**\n\nLas funciones son bloques de código reutilizables que realizan una tarea específica.",
         code: `# ¿Cuál es la palabra correcta?
@@ -1467,5 +1469,6 @@ factorial_seguro(5)     # 120 (5 × 4 × 3 × 2 × 1)
 - Cada llamada recursiva usa memoria (stack)
 - Para n muy grande puede causar "stack overflow"
 - Python tiene límite de recursión (generalmente ~1000 niveles)`
-    }
-];
+        }
+    ]
+}

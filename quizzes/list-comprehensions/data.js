@@ -1,4 +1,6 @@
-const listComprehensionsQuizData = [
+const listComprehensionsQuizData = {
+    randomize: true,// Skills tested at mixed difficulty
+    questions: [
     {
         question: "**Análisis de mensajes con list comprehension**\n\nSe necesita una función que analice una lista de mensajes de texto. La función debe usar una **list comprehension** para crear una lista de *palabras clave*. Una palabra clave se extrae de un mensaje si este no es considerado \"spam\". Para ello, la comprensión debe utilizar dos funciones auxiliares: `es_mensaje_seguro` para filtrar los mensajes, y `extraer_palabra_clave` para transformar los mensajes válidos.\n\n¿Cuál es la lista de palabras clave que resulta de analizar `lista_mensajes`?\n\n¿Cuál será el resultado?",
         code: `from typing import List
@@ -443,5 +445,6 @@ El resultado final es un diccionario con solo los dos libros que tenían ISBN, c
 - **Dict comprehension**: \`{key_expr: value_expr for item in items if condition}\`
 - **Filtrado con .get()**: Retorna \`None\` si la clave no existe, útil para filtrar
 - **Transformación de valores**: Aplicar funciones para formatear datos`
-    }
-]
+        }
+    ]
+}

@@ -53,6 +53,7 @@ const QuizApp = {
      * @property {number} score - The user's current score.
      * @property {number} currentQuestionIndex - The index of the current question in the shuffled array.
      * @property {Array<Object>} questions - The shuffled array of question data.
+     * @property {boolean} randomize - Whether questions are randomized.
      * @property {Object} dom - References to all necessary DOM elements.
      */
     state: {
@@ -60,16 +61,22 @@ const QuizApp = {
         currentQuestionIndex: 0,
         questions: [],
         userAnswers: [],
+        randomize: true,
         dom: {},
     },
 
     /**
-     * Initializes the application with quiz data.
+     * Initializes the application with quiz configuration.
      * Caches DOM elements and sets up event listeners.
-     * @param {Array<Object>} quizData - Array of question objects
+     * @param {Object} quizConfig - Quiz configuration object
+     * @param {Array<Object>} quizConfig.questions - Array of question objects
+     * @param {boolean} [quizConfig.randomize=true] - Whether to shuffle questions
      */
-    init(quizData) {
-        this.quizData = quizData;
+    init(quizConfig) {
+        // Store config
+        this.quizConfig = quizConfig;
+        this.state.randomize = quizConfig.randomize ?? true;
+        
         // Cache all DOM elements once
         for (const key in DOM_SELECTORS) {
             this.state.dom[key] = document.getElementById(DOM_SELECTORS[key]);
@@ -99,13 +106,19 @@ const QuizApp = {
 
     /**
      * Starts or restarts the quiz.
-     * Resets state, shuffles questions, and shows the first question.
+     * Resets state, shuffles questions (if enabled), and shows the first question.
      */
     start() {
         this.state.score = 0;
         this.state.currentQuestionIndex = 0;
         this.state.userAnswers = [];
-        this.state.questions = [...this.quizData].sort(() => Math.random() - 0.5);
+        
+        // Respect randomize setting from config
+        if (this.state.randomize) {
+            this.state.questions = [...this.quizConfig.questions].sort(() => Math.random() - 0.5);
+        } else {
+            this.state.questions = [...this.quizConfig.questions];
+        }
 
         this.updateScreen(this.state.dom.questionScreen, [this.state.dom.startScreen, this.state.dom.resultScreen, this.state.dom.reviewScreen]);
         this.renderQuestion();
