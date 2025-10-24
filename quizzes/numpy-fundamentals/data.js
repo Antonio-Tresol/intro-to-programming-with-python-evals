@@ -371,7 +371,7 @@ resultado = arr[:2, 1:]`,
             "[[6 7 8]\n [10 11 12]]"
         ],
         correct: "[[2 3 4]\n [6 7 8]]",
-        explanation: `**Respuesta correcta: [[2 3 4]\\n [6 7 8]]**
+        explanation: `**Respuesta correcta: [[2 3 4]\n [6 7 8]]**
 
 **Slicing 2D**: \`arr[filas, columnas]\`
 - \`[:2]\` → primeras 2 filas (0 y 1)
@@ -570,7 +570,7 @@ resultado = matriz.T`,
             "[[6 5 4]\n [3 2 1]]"
         ],
         correct: "[[1 4]\n [2 5]\n [3 6]]",
-        explanation: `**Respuesta correcta: [[1 4]\\n [2 5]\\n [3 6]]**
+        explanation: `**Respuesta correcta: [[1 4]\n [2 5]\n [3 6]]**
 
 **\`.T\`** (transpose) intercambia filas por columnas:
 
@@ -616,7 +616,7 @@ resultado = np.concatenate((a, b), axis=0)`,
             "Error: shapes incompatibles"
         ],
         correct: "[[1 2]\n [3 4]\n [5 6]\n [7 8]]",
-        explanation: `**Respuesta correcta: [[1 2]\\n [3 4]\\n [5 6]\\n [7 8]]**
+        explanation: `**Respuesta correcta: [[1 2]\n [3 4]\n [5 6]\n [7 8]]**
 
 **\`np.concatenate()\`** une arrays a lo largo de un eje:
 
@@ -833,7 +833,7 @@ resultado = matriz + vector`,
             "[[11 21 31]\n [14 24 34]]"
         ],
         correct: "[[11 22 33]\n [14 25 36]]",
-        explanation: `**Respuesta correcta: [[11 22 33]\\n [14 25 36]]**
+        explanation: `**Respuesta correcta: [[11 22 33]\n [14 25 36]]**
 
 Broadcasting **extiende** el vector a cada fila de la matriz:
 
