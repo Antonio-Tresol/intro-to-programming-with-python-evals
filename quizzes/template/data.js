@@ -5,19 +5,24 @@
  * INSTRUCTIONS:
  * 1. Copy this file to your quiz folder
  * 2. Rename the variable (e.g., myTopicQuizData)
- * 3. Add your questions following the structure below
- * 4. Update the index.html to reference your variable name
+ * 3. Set randomize: true/false based on whether questions should be shuffled
+ *    - true: Questions appear in random order (assessment/verification)
+ *    - false: Questions appear in order (educational progression)
+ * 4. Add your questions following the structure below
+ * 5. Update the index.html to reference your variable name
  */
 
-const templateQuizData = [
-    {
-        question: "Your question text here? You can use **Markdown** for *formatting*.",
-        code: `# Python code goes here
+const templateQuizData = {
+    randomize: true,  // Set to false for educational progression, true for assessment
+    questions: [
+        {
+            question: "Your question text here? You can use **Markdown** for *formatting*.",
+            code: `# Python code goes here
 def example_function(x: int) -> int:
     return x * 2`,
-        options: ["Option A", "Option B", "Option C", "Option D"],
-        correct: "Option B",  // Must match exactly one of the options
-        explanation: `
+            options: ["Option A", "Option B", "Option C", "Option D"],
+            correct: "Option B",  // Must match exactly one of the options
+            explanation: `
 Your detailed explanation goes here. You can use:
 * **Markdown** formatting
 * Code snippets: \`variable_name\`
@@ -25,9 +30,9 @@ Your detailed explanation goes here. You can use:
 
 Explain step by step why the answer is correct.
 `
-    },
-    {
-        question: "Second question example?",
+        },
+        {
+            question: "Second question example?",
         code: `# Another code example
 from typing import List
 
@@ -48,6 +53,7 @@ This function:
 
 Given input \`[1, 2, 3]\`, the output is \`[2, 4, 6]\`.
 `
-    }
-    // Add more questions here...
-];
+        }
+        // Add more questions here...
+    ]
+}

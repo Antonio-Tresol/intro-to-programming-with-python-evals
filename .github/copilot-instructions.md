@@ -26,25 +26,39 @@ quizzes/
 **Never** embed CSS or JavaScript directly in HTML files. This pattern emerged from refactoring to eliminate ~40KB of duplication per quiz.
 
 ### Quiz Data Format (Critical Contract)
-Each question object must have these exact properties:
+Each quiz data file exports a **configuration object** with questions and a randomization flag:
 ```javascript
-const yourQuizNameData = [
-    {
-        question: "Question text (Markdown supported)",
-        code: `Python code snippet`,
-        options: ["A", "B", "C", "D"],  // Exactly 4 options
-        correct: "C",                   // Must match one option exactly (string comparison)
-        explanation: "Markdown explanation with **bold**, `code`, links"
-    }
-];
+const yourQuizNameData = {
+    randomize: true,  // true: Random order (assessment), false: Sequential order (educational)
+    questions: [
+        {
+            question: "Question text (Markdown supported)",
+            code: `Python code snippet`,
+            options: ["A", "B", "C", "D"],  // Exactly 4 options
+            correct: "C",                   // Must match one option exactly (string comparison)
+            explanation: "Markdown explanation with **bold**, `code`, links"
+        }
+    ]
+};
 ```
 
-**Why this matters**: The quiz engine uses `option.trim() === correctOption.trim()` for validation. Mismatch breaks scoring.
+**Randomization Guidance**:
+- **`randomize: false`** - Educational progression (e.g., NumPy: basics → advanced, Python Lists: intro → experts)
+  - Questions appear in defined order, building conceptually
+  - Use for quizzes with pedagogical structure
+  - Examples: `data-structures`, `python-lists`, `python-dictionaries`, `python-functions`, `numpy-fundamentals`
+
+- **`randomize: true`** - Assessment/mastery verification (shuffled every attempt)
+  - Questions appear in random order to prevent memorization
+  - Use for comprehensive skill checks
+  - Examples: `physics-chemistry`, `list-comprehensions`, `helper-functions`
+
+**Why this matters**: The quiz engine uses `option.trim() === correctOption.trim()` for validation. Mismatch breaks scoring. The `randomize` flag controls question shuffling behavior.
 
 ### Quiz Engine Integration
 The engine (`assets/js/quiz-engine.js`) expects:
 - DOM IDs defined in `DOM_SELECTORS` constant (e.g., `quiz-container`, `start-btn`)
-- Initialization via `QuizApp.init(quizData)` after DOM loads
+- Initialization via `QuizApp.init(configObject)` where configObject has `{randomize, questions}`
 - External dependencies: Tailwind CSS, Highlight.js, Marked.js (all CDN-loaded)
 
 ## Developer Workflows
