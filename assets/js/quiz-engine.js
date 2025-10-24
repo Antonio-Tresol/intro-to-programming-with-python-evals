@@ -12,8 +12,12 @@ const DOM_SELECTORS = {
     startScreen: 'start-screen',
     questionScreen: 'question-screen',
     resultScreen: 'result-screen',
+    reviewScreen: 'review-screen',
     startBtn: 'start-btn',
     restartBtn: 'restart-btn',
+    restartFromReviewBtn: 'restart-from-review-btn',
+    reviewBtn: 'review-btn',
+    homeBtn: 'home-btn',
     nextBtn: 'next-btn',
     questionCounter: 'question-counter',
     score: 'score',
@@ -23,6 +27,7 @@ const DOM_SELECTORS = {
     optionsContainer: 'options-container',
     explanationContainer: 'explanation-container',
     finalScore: 'final-score',
+    reviewContainer: 'review-container',
 };
 
 /**
@@ -54,6 +59,7 @@ const QuizApp = {
         score: 0,
         currentQuestionIndex: 0,
         questions: [],
+        userAnswers: [],
         dom: {},
     },
 
@@ -78,6 +84,17 @@ const QuizApp = {
         this.state.dom.startBtn.addEventListener('click', () => this.start());
         this.state.dom.restartBtn.addEventListener('click', () => this.start());
         this.state.dom.nextBtn.addEventListener('click', () => this.nextQuestion());
+        
+        // Review and home buttons
+        if (this.state.dom.reviewBtn) {
+            this.state.dom.reviewBtn.addEventListener('click', () => this.showReviewScreen());
+        }
+        if (this.state.dom.restartFromReviewBtn) {
+            this.state.dom.restartFromReviewBtn.addEventListener('click', () => this.start());
+        }
+        if (this.state.dom.homeBtn) {
+            this.state.dom.homeBtn.addEventListener('click', () => this.returnToHome());
+        }
     },
 
     /**
@@ -87,9 +104,10 @@ const QuizApp = {
     start() {
         this.state.score = 0;
         this.state.currentQuestionIndex = 0;
+        this.state.userAnswers = [];
         this.state.questions = [...this.quizData].sort(() => Math.random() - 0.5);
 
-        this.updateScreen(this.state.dom.questionScreen, [this.state.dom.startScreen, this.state.dom.resultScreen]);
+        this.updateScreen(this.state.dom.questionScreen, [this.state.dom.startScreen, this.state.dom.resultScreen, this.state.dom.reviewScreen]);
         this.renderQuestion();
     },
 
@@ -180,6 +198,19 @@ const QuizApp = {
      */
     handleAnswer(button, selectedOption, correctOption) {
         const { dom } = this.state;
+        const questionData = this.state.questions[this.state.currentQuestionIndex];
+        const isCorrect = selectedOption.trim() === correctOption.trim();
+        
+        // Store user answer
+        this.state.userAnswers.push({
+            questionText: questionData.question,
+            codeSnippet: questionData.code,
+            userChoice: selectedOption,
+            correctAnswer: correctOption,
+            isCorrect: isCorrect,
+            explanation: questionData.explanation,
+            options: questionData.options
+        });
         
         // Disable all option buttons
         Array.from(dom.optionsContainer.children).forEach(btn => {
@@ -187,7 +218,7 @@ const QuizApp = {
             btn.style.cursor = 'not-allowed';
         });
 
-        if (selectedOption.trim() === correctOption.trim()) {
+        if (isCorrect) {
             this.state.score += 10;
             dom.score.textContent = `Puntaje: ${this.state.score}`;
             button.classList.add(CSS_CLASSES.feedbackCorrect);
@@ -233,6 +264,85 @@ const QuizApp = {
     showResults() {
         this.state.dom.finalScore.textContent = this.state.score;
         this.updateScreen(this.state.dom.resultScreen, [this.state.dom.questionScreen]);
+    },
+    
+    /**
+     * Displays the review screen with all user answers.
+     */
+    showReviewScreen() {
+        const { dom, userAnswers } = this.state;
+        
+        if (!dom.reviewContainer) {
+            console.error('Review container not found');
+            return;
+        }
+        
+        // Clear previous content
+        dom.reviewContainer.innerHTML = '';
+        
+        // Render each answer
+        userAnswers.forEach((answer, index) => {
+            const reviewItem = document.createElement('div');
+            reviewItem.classList.add('review-item', answer.isCorrect ? 'review-correct' : 'review-incorrect');
+            
+            // Question header
+            const header = document.createElement('div');
+            header.classList.add('review-header');
+            header.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-lg">Pregunta ${index + 1}</span>
+                    <span class="text-2xl">${answer.isCorrect ? '✓' : '✗'}</span>
+                </div>
+            `;
+            reviewItem.appendChild(header);
+            
+            // Question text
+            const questionText = document.createElement('div');
+            questionText.classList.add('mb-4');
+            questionText.innerHTML = marked.parse(answer.questionText);
+            reviewItem.appendChild(questionText);
+            
+            // Code snippet if present
+            if (answer.codeSnippet) {
+                const codeDiv = document.createElement('div');
+                codeDiv.classList.add('mb-4', 'code-block');
+                const escapedCode = answer.codeSnippet.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                codeDiv.innerHTML = `<pre><code class="language-python">${escapedCode}</code></pre>`;
+                reviewItem.appendChild(codeDiv);
+                hljs.highlightElement(codeDiv.querySelector('code'));
+            }
+            
+            // User's answer
+            const userAnswerDiv = document.createElement('div');
+            userAnswerDiv.classList.add('mb-2');
+            userAnswerDiv.innerHTML = `<strong>Tu respuesta:</strong> <code class="bg-gray-100 px-2 py-1 rounded">${answer.userChoice}</code>`;
+            reviewItem.appendChild(userAnswerDiv);
+            
+            // Correct answer if user was wrong
+            if (!answer.isCorrect) {
+                const correctAnswerDiv = document.createElement('div');
+                correctAnswerDiv.classList.add('mb-2');
+                correctAnswerDiv.innerHTML = `<strong>Respuesta correcta:</strong> <code class="bg-green-100 px-2 py-1 rounded">${answer.correctAnswer}</code>`;
+                reviewItem.appendChild(correctAnswerDiv);
+            }
+            
+            // Explanation
+            const explanationDiv = document.createElement('div');
+            explanationDiv.classList.add('mt-4', 'pt-4', 'border-t', 'border-gray-300');
+            explanationDiv.innerHTML = `<strong>Explicación:</strong><div class="mt-2">${marked.parse(answer.explanation)}</div>`;
+            reviewItem.appendChild(explanationDiv);
+            
+            dom.reviewContainer.appendChild(reviewItem);
+        });
+        
+        this.updateScreen(dom.reviewScreen, [dom.resultScreen]);
+    },
+    
+    /**
+     * Returns to the home page.
+     */
+    returnToHome() {
+        window.location.href = '../../index.html';
     },
     
     /**
